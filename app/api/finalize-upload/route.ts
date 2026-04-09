@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
   if (apiKey !== API_KEY) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
   const { filename } = await req.json();
-  if (!/^daily_\d{2}\.\d{2}\.\d{4}\.html$/.test(filename))
+  if (!/^(daily_\d{2}\.\d{2}\.\d{4}\.html|status\.json)$/.test(filename))
     return NextResponse.json({ error: 'Invalid filename format' }, { status: 400 });
 
   const safeName = filename.replace(/[^a-zA-Z0-9._-]/g, '');
