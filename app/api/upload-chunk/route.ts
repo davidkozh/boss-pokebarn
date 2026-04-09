@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
   if (apiKey !== API_KEY) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
   const { filename, chunk } = await req.json();
-  if (!/^daily_\d{2}\.\d{2}\.\d{4}\.html$/.test(filename))
+  if (!/^(daily_\d{2}\.\d{2}\.\d{4}\.html|status\.json)$/.test(filename))
     return NextResponse.json({ error: 'Invalid filename format' }, { status: 400 });
   if (typeof chunk !== 'string' || chunk.length === 0)
     return NextResponse.json({ error: 'Missing chunk' }, { status: 400 });
