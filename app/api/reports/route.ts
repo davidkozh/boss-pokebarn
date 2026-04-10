@@ -7,7 +7,7 @@ export async function GET() {
   const code = [
     'import os, json',
     'from datetime import datetime',
-    "files = [f for f in os.listdir('/root/dashboard/reports') if f.endswith('.html')]",
+    "files = [f for f in os.listdir('/tmp/pokebarn_reports') if f.endswith('.html')]",
     'def parse_date(f):',
     '    try: return datetime.strptime(f, "daily_%d.%m.%Y.html")',
     '    except: return datetime.min',
