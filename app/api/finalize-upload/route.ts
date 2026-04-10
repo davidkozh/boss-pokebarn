@@ -15,13 +15,12 @@ export async function POST(req: NextRequest) {
   const safeName = filename.replace(/[^a-zA-Z0-9._-]/g, '');
   const code = [
     'import base64, os',
+    "os.makedirs('/tmp/pokebarn_reports', exist_ok=True)",
     `with open('/tmp/upload_${safeName}.b64', 'r') as f:`,
     '    b64 = f.read()',
     'data = base64.b64decode(b64)',
-    `with open('/root/dashboard/reports/${safeName}', 'wb') as fw:`,
+    `with open('/tmp/pokebarn_reports/${safeName}', 'wb') as fw:`,
     '    fw.write(data)',
-    '    fw.flush()',
-    '    os.fsync(fw.fileno())',
     `os.remove('/tmp/upload_${safeName}.b64')`,
     'print("ok:" + str(len(data)))',
   ].join('\n');
