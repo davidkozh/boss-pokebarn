@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Invalid filename format' }, { status: 400 });
   }
 
-  const code = `import base64\ndata = base64.b64decode("""${content}""")\nopen('/root/dashboard/reports/${filename}', 'wb').write(data)\nprint('ok:' + str(len(data)))`;
+  const code = `import base64\ndata = base64.b64decode("""${content}""")\nopen('/tmp/pokebarn_reports/${filename}', 'wb').write(data)\nprint('ok:' + str(len(data)))`;
 
   const vpsRes = await fetch(VPS_URL, {
     method: 'POST',
