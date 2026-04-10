@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
   if (apiKey !== API_KEY) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
   const { filename } = await req.json();
-  if (!/^(daily_\d{2}\.\d{2}\.\d{4}\.html|status\.json)$/.test(filename))
+  if (!/^daily_\d{2}\.\d{2}\.\d{4}\.html$/.test(filename))
     return NextResponse.json({ error: 'Invalid filename format' }, { status: 400 });
 
   const safeName = filename.replace(/[^a-zA-Z0-9._-]/g, '');
@@ -18,7 +18,10 @@ export async function POST(req: NextRequest) {
     `with open('/tmp/upload_${safeName}.b64', 'r') as f:`,
     '    b64 = f.read()',
     'data = base64.b64decode(b64)',
-    `open('/root/dashboard/reports/${safeName}', 'wb').write(data)`,
+    `with open('/root/dashboard/reports/${safeName}', 'wb') as fw:`,
+    '    fw.write(data)',
+    '    fw.flush()',
+    '    os.fsync(fw.fileno())',
     `os.remove('/tmp/upload_${safeName}.b64')`,
     'print("ok:" + str(len(data)))',
   ].join('\n');
