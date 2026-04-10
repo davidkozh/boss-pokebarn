@@ -15,14 +15,15 @@ export async function GET(
   const safeName = filename.replace(/[^a-zA-Z0-9._-]/g, '');
   const code = [
     'import base64',
-    `with open('/root/dashboard/reports/${safeName}', 'rb') as f:`,
-    '    print(base64.b64encode(f.read()).decode())',
+    `with open('/tmp/pokebarn_reports/${safeName}', 'rb') as f:`,
+    ' print(base64.b64encode(f.read()).decode())',
   ].join('\n');
 
   const vpsRes = await fetch(VPS_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'text/plain', 'X-Token': VPS_TOKEN },
     body: code,
+    cache: 'no-store',
   });
   const { returncode, stdout, stderr } = await vpsRes.json();
 
