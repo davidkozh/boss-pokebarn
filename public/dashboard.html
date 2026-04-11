@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pokebarn Dashboard</title>
   <script src="reports/report-data.js"></script>
+  <script src="releases/releases-workflow.js"></script>
   <style>
     :root {
       --bg: #0d1117;
@@ -374,7 +375,17 @@
     }
 
     /* ── States ── */
-    .empty-msg { color: var(--text-muted); font-size: 13px; padding: 12px 0; }
+        /* ── Release Workflow ── */
+    .workflow-list { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
+    .workflow-step { display: flex; align-items: flex-start; gap: 10px; background: var(--surface2); border: 1px solid var(--border); border-radius: 7px; padding: 8px 11px; }
+    .workflow-badge { flex-shrink: 0; min-width: 64px; text-align: center; font-size: 10px; font-weight: bold; color: var(--accent-blue); background: #1a3a6b33; border-radius: 4px; padding: 2px 5px; margin-top: 1px; letter-spacing: 0.02em; }
+    .workflow-badge.recurring { color: var(--text-muted); background: transparent; }
+    .workflow-body { flex: 1; min-width: 0; }
+    .workflow-action { font-size: 12px; font-weight: 600; color: var(--text); }
+    .workflow-detail { font-size: 11px; color: var(--text-muted); margin-top: 2px; line-height: 1.4; }
+    .workflow-blocker { display: inline-block; margin-top: 4px; font-size: 10px; color: var(--accent-orange); background: #7a4f0022; border: 1px solid #7a4f0055; border-radius: 3px; padding: 1px 5px; }
+
+.empty-msg { color: var(--text-muted); font-size: 13px; padding: 12px 0; }
     .error-msg {
       color: #f87171;
       font-size: 13px;
@@ -539,6 +550,11 @@
   <div class="right-col">
     <div class="section-title">Расписание задач</div>
     <div id="schedule-list" class="schedule-list"></div>
+
+    <div class="section" style="margin-top: 28px;">
+      <div class="section-title">Схема обновления релизов</div>
+      <div id="workflow-list" class="workflow-list"><span style="color:var(--text-muted);font-size:12px">Загружаю…</span></div>
+    </div>
   </div>
 
 </div>
@@ -809,6 +825,18 @@ function init() {
   renderReport(parseReport(archive[0].html));
 }
 
+
+(function renderWorkflow() {
+  const container = document.getElementById('workflow-list');
+  if (!window.RELEASE_WORKFLOW || !window.RELEASE_WORKFLOW.length) { container.innerHTML = '<span style="color:var(--text-muted)">releases-workflow.js не загружен</span>'; return; }
+  let html = '';
+  window.RELEASE_WORKFLOW.forEach(step => {
+    const bc = step.days === null ? 'workflow-badge recurring' : 'workflow-badge';
+    const bl = step.blocker ? `<span class="workflow-blocker">⛔ ${step.blocker}</span>` : '';
+    html += `<div class="workflow-step"><div class="${bc}">${step.label}</div><div class="workflow-body"><div class="workflow-action">${step.action}</div><div class="workflow-detail">${step.detail}</div>${bl}</div></div>`;
+  });
+  container.innerHTML = html;
+})();
 init();
 </script>
 </body>
