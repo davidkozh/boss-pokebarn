@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokebarn Dashboard</title>
+  <script src="reports/report-data.js"></script>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --surface2: #1f2937;
+      --border: #30363d;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --accent-green: #3fb950;
+      --accent-blue: #58a6ff;
+      --accent-orange: #d29922;
+      --status-ok-bg: #1a3a1f;
+      --status-ok-text: #3fb950;
+      --status-warn-bg: #2a2000;
+      --status-warn-text: #d29922;
+      --status-error-bg: #2a0a0a;
+      --status-error-text: #f87171;
+      --status-running-bg: #0a1628;
+      --status-running-text: #60a5fa;
+      --status-skip-bg: #2a2000;
+      --status-skip-text: #fbbf24;
+      --status-disabled-bg: #1f2937;
+      --status-disabled-text: #6b7280;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-logo {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+    .header-date {
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    /* ── Layout ── */
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      min-height: calc(100vh - 49px);
+    }
+    .left-col {
+      padding: 20px 24px;
+      border-right: 1px solid var(--border);
+    }
+    .right-col {
+      padding: 20px 20px;
+    }
+
+    /* ── Section ── */
+    .section { margin-bottom: 28px; }
+    .section-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── Archive chips ── */
+    .archive-chips {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .chip {
+      padding: 3px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-muted);
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .chip:hover { border-color: var(--accent-blue); color: var(--accent-blue); }
+    .chip.active { background: var(--accent-blue); border-color: var(--accent-blue); color: #fff; }
+    .chip.not-found { opacity: 0.3; cursor: default; }
+
+    /* ── Report summary box ── */
+    .report-stats {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 11px 15px;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      line-height: 1.8;
+    }
+    .report-stats strong { color: var(--text); }
+
+    /* ── Task accordion rows ── */
+    .task-row {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 5px;
+      overflow: hidden;
+      transition: border-color 0.12s;
+    }
+    .task-row:hover { border-color: #444d56; }
+    .task-row-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 13px;
+      cursor: pointer;
+      gap: 8px;
+    }
+    .task-row-left {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      min-width: 0;
+      flex: 1;
+    }
+    .task-row-name {
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 13px;
+    }
+    .task-row-id {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-family: monospace;
+      flex-shrink: 0;
+    }
+    .task-row-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .task-row-time {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .task-row-chevron {
+      font-size: 9px;
+      color: var(--text-muted);
+      transition: transform 0.18s;
+    }
+    .task-row.open .task-row-chevron { transform: rotate(180deg); }
+    .task-row-body {
+      display: none;
+      padding: 0 13px 11px;
+      color: #cdd9e5;
+      font-size: 13px;
+      line-height: 1.6;
+      border-top: 1px solid var(--border);
+    }
+    .task-row.open .task-row-body { display: block; }
+    .task-row-body-inner { padding-top: 9px; }
+    /* Preserve report styles inside accordion */
+    .task-row-body-inner ul { padding-left: 20px; margin: 6px 0; }
+    .task-row-body-inner li { margin: 3px 0; }
+    .task-row-body-inner code { background: var(--surface2); padding: 1px 5px; border-radius: 3px; font-family: monospace; font-size: 12px; }
+    .task-row-body-inner .warn-box { margin-top: 8px; padding: 9px 12px; background: #2a2000; border-radius: 6px; border-left: 3px solid #d29922; font-size: 12px; color: #cdd9e5; }
+    .task-row-body-inner .err-box { margin-top: 8px; padding: 9px 12px; background: var(--status-error-bg); border-radius: 6px; border-left: 3px solid #ef9a9a; font-size: 12px; color: #cdd9e5; font-family: monospace; }
+    .task-row-body-inner .review-list { margin-top: 8px; padding: 10px 12px; background: #2a2000; border-radius: 6px; border-left: 3px solid #d29922; }
+    .task-row-body-inner .review-list h3 { font-size: 13px; color: #d29922; margin-bottom: 6px; }
+    .task-row-body-inner a { color: var(--accent-blue); text-decoration: none; }
+    .task-row-body-inner a:hover { text-decoration: underline; }
+
+    /* ── Status badges ── */
+    .status-badge {
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .status-badge.ok       { background: var(--status-ok-bg);       color: var(--status-ok-text); }
+    .status-badge.warn     { background: var(--status-warn-bg);     color: var(--status-warn-text); }
+    .status-badge.error    { background: var(--status-error-bg);    color: var(--status-error-text); }
+    .status-badge.running  { background: var(--status-running-bg);  color: var(--status-running-text); }
+    .status-badge.skip     { background: var(--status-skip-bg);     color: var(--status-skip-text); }
+    .status-badge.disabled { background: var(--status-disabled-bg); color: var(--status-disabled-text); }
+
+    /* ── Rules ── */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .rule-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+    .rule-card-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .rule-card-body {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+    .rule-card-body code { background: var(--surface2); padding: 1px 5px; border-radius: 3px; font-family: monospace; font-size: 11px; }
+    .rule-card.warn  { border-color: #7a4f00; }
+    .rule-card.warn  .rule-card-title { color: var(--accent-orange); }
+    .rule-card.danger { border-color: #6e1010; }
+    .rule-card.danger .rule-card-title { color: #f87171; }
+    .rule-card.info  { border-color: #1a3a6b; }
+    .rule-card.info  .rule-card-title { color: var(--accent-blue); }
+
+    /* ── Agent list ── */
+    .agent-list { display: flex; flex-direction: column; gap: 8px; }
+    .agent-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+      user-select: none;
+    }
+    .agent-item:hover { border-color: #444d56; }
+    .agent-item.active { background: var(--surface2); }
+    .agent-item.active[data-agent="продакт"]     { border-color: #3fb950; }
+    .agent-item.active[data-agent="аудитор"]     { border-color: #58a6ff; }
+    .agent-item.active[data-agent="разработчик"] { border-color: #e3b341; }
+    .agent-item.active[data-agent="тестировщик"] { border-color: #f85149; }
+    .agent-dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+    .agent-name { font-weight: 600; font-size: 13px; }
+    .agent-desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+    /* ── Schedule filter states ── */
+    .schedule-item { transition: opacity 0.18s; }
+    .schedule-item.dimmed { opacity: 0.18; }
+    .schedule-item.highlighted .schedule-card { border-color: #444d56; box-shadow: 0 0 0 1px rgba(255,255,255,0.06); }
+
+    /* ── Schedule (right) ── */
+    .schedule-list { display: flex; flex-direction: column; }
+    .schedule-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .schedule-time-col {
+      width: 42px;
+      flex-shrink: 0;
+      text-align: right;
+      padding-top: 5px;
+    }
+    .schedule-time {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-family: monospace;
+    }
+    .schedule-line-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+      width: 16px;
+    }
+    .schedule-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 7px;
+    }
+    .schedule-connector {
+      width: 1px;
+      background: var(--border);
+      flex: 1;
+      min-height: 6px;
+    }
+    .schedule-card-wrap { flex: 1; padding-bottom: 5px; }
+    .schedule-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 7px 11px;
+    }
+    .schedule-card.disabled { opacity: 0.45; }
+    .schedule-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+    .schedule-card-name { font-size: 13px; font-weight: 500; }
+    .schedule-card-name .icon { margin-right: 4px; }
+    .schedule-card-badges { display: flex; gap: 4px; align-items: center; flex-shrink: 0; }
+    .agent-badge {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: 500;
+    }
+    .agent-badge.продакт      { background: #1a3a1f; color: #3fb950; }
+    .agent-badge.аудитор      { background: #0a1a35; color: #58a6ff; }
+    .agent-badge.разработчик  { background: #2a2200; color: #e3b341; }
+    .agent-badge.тестировщик  { background: #2a0a0a; color: #f85149; }
+    .agent-badge.авто         { background: #1c1c1c; color: #6b7280; }
+    .disabled-badge {
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 8px;
+      background: var(--surface2);
+      color: var(--text-muted);
+    }
+    .schedule-separator {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 18px 0 14px;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .schedule-separator::before,
+    .schedule-separator::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .schedule-card-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ── States ── */
+    .empty-msg { color: var(--text-muted); font-size: 13px; padding: 12px 0; }
+    .error-msg {
+      color: #f87171;
+      font-size: 13px;
+      padding: 10px 13px;
+      background: var(--status-error-bg);
+      border-radius: 6px;
+      border: 1px solid #6e1010;
+    }
+
+    /* ── Mobile tab bar ── */
+    .mobile-tabs { display: none; }
+
+    @media (max-width: 767px) {
+      .layout {
+        grid-template-columns: 1fr;
+        min-height: unset;
+      }
+      .left-col {
+        border-right: none;
+        padding: 16px;
+        padding-bottom: 80px; /* не перекрывать таб-бар */
+      }
+      .right-col {
+        display: none;
+        padding: 16px;
+        padding-bottom: 80px;
+        border-top: 1px solid var(--border);
+      }
+      .right-col.visible { display: block; }
+      .left-col.hidden   { display: none; }
+
+      .mobile-tabs {
+        display: flex;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        background: var(--surface);
+        border-top: 1px solid var(--border);
+        z-index: 200;
+        height: 60px;
+      }
+      .mobile-tab {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        font-size: 11px;
+        color: var(--text-muted);
+        background: none;
+        border: none;
+        cursor: pointer;
+        transition: color 0.15s;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .mobile-tab .tab-icon { font-size: 20px; line-height: 1; }
+      .mobile-tab.active { color: var(--accent-blue); }
+      .mobile-tab.active .tab-icon { filter: drop-shadow(0 0 4px rgba(88,166,255,0.5)); }
+
+      /* На мобиле убираем sticky-header чтобы не съедал место */
+      .header { position: static; }
+
+      /* Правила — одна колонка на узких экранах */
+      .rules-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-logo">🃏 Pokebarn</div>
+  <div class="header-date" id="header-date"></div>
+</div>
+
+<nav class="mobile-tabs">
+  <button class="mobile-tab active" id="tab-left" onclick="showTab('left')">
+    <span class="tab-icon">📋</span>Отчёт
+  </button>
+  <button class="mobile-tab" id="tab-right" onclick="showTab('right')">
+    <span class="tab-icon">🗓</span>Расписание
+  </button>
+</nav>
+
+<div class="layout">
+
+  <!-- ══════ LEFT ══════ -->
+  <div class="left-col">
+
+    <!-- Section 1: Daily Report -->
+    <div class="section">
+      <div class="section-title">Дневной отчёт</div>
+      <div id="archive-chips" class="archive-chips">
+        <span class="chip" style="opacity:.4;cursor:default">Загрузка…</span>
+      </div>
+      <div id="report-stats" class="report-stats">
+        <span style="color:var(--text-muted)">Загружаю отчёт…</span>
+      </div>
+      <div id="report-tasks"></div>
+    </div>
+
+    <!-- Section 2: Agents -->
+    <div class="section">
+      <div class="section-title">Агенты</div>
+      <div class="agent-list">
+        <div class="agent-item" data-agent="продакт" onclick="filterAgent('продакт')">
+          <div class="agent-dot" style="background:#3fb950"></div>
+          <div>
+            <div class="agent-name" style="color:#3fb950">Продакт</div>
+            <div class="agent-desc">Операционная работа: мониторинг рынка (Avito, Ozon), управление товарами и релизами, ценообразование, закупки, eBay/Qwintry, акции WB и Ozon.</div>
+          </div>
+        </div>
+        <div class="agent-item" data-agent="аудитор" onclick="filterAgent('аудитор')">
+          <div class="agent-dot" style="background:#58a6ff"></div>
+          <div>
+            <div class="agent-name" style="color:#58a6ff">Аудитор</div>
+            <div class="agent-desc">Метауровень системы: улучшение промптов и инструкций, оптимизация токенов OpenClaw, проверка товаров по снапшотам, бэкапы МойСклад, аудит OpenClaw.</div>
+          </div>
+        </div>
+        <div class="agent-item" data-agent="разработчик" onclick="filterAgent('разработчик')">
+          <div class="agent-dot" style="background:#e3b341"></div>
+          <div>
+            <div class="agent-name" style="color:#e3b341">Разработчик</div>
+            <div class="agent-desc">Веб-разработка и DevOps: создание и деплой сервисов на субдоменах pokebarn.ru, Next.js/Vercel/GitHub, DNS, интеграции.</div>
+          </div>
+        </div>
+        <div class="agent-item" data-agent="тестировщик" onclick="filterAgent('тестировщик')">
+          <div class="agent-dot" style="background:#f85149"></div>
+          <div>
+            <div class="agent-name" style="color:#f85149">Тестировщик</div>
+            <div class="agent-desc">QA и поиск багов: тестирование сервисов в браузере как живой пользователь, воспроизведение ошибок, отчёты для Разработчика.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3: Rules -->
+    <div class="section">
+      <div class="section-title">Общие правила</div>
+      <div class="rules-grid">
+        <div class="rule-card warn">
+          <div class="rule-card-title">🔄 Синхронизация изменений</div>
+          <div class="rule-card-body">При любом изменении задачи — обновить <strong>все четыре места</strong>: scheduled task + строка <code>**Расписание:**</code> в файле <code>prompts/</code> + массив <code>TASKS</code> в <code>dashboard.html</code> + README агента. Таблица триггеров в <code>README.md</code> → «Синхронизация при изменении задач».</div>
+        </div>
+        <div class="rule-card warn">
+          <div class="rule-card-title">⚠️ Цены — только из API</div>
+          <div class="rule-card-body">Перед обновлением цен делать <code>GET /entity/product?filter=code=...</code>. Бэкап в <code>backup/</code> может быть устаревшим — <code>val_map</code> по нему не строить.</div>
+        </div>
+        <div class="rule-card info">
+          <div class="rule-card-title">🖱️ Ввод цен в МойСклад</div>
+          <div class="rule-card-body"><code>form_input</code> не работает. Правильно: <code>left_click → Home → Shift+End → type</code>. Сохранять кнопкой «Сохранить».</div>
+        </div>
+        <div class="rule-card danger">
+          <div class="rule-card-title">🚫 OpenClaw — не трогать</div>
+          <div class="rule-card-body">Файлы Docker-контейнера — закрытая зона. Аудит только через Telegram-бота. Никаких прямых изменений на VPS.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════ RIGHT: Schedule ══════ -->
+  <div class="right-col">
+    <div class="section-title">Расписание задач</div>
+    <div id="schedule-list" class="schedule-list"></div>
+  </div>
+
+</div>
+
+<script>
+// ──────────────────────────────────────────────────────
+// TASKS DATA
+// ──────────────────────────────────────────────────────
+const TASKS = [
+  { id: 'update-pokemon-releases',      name: 'Обновление релизов',       icon: '📅', hour: 0,    enabled: true,  agent: 'продакт',  desc: 'Обновление календаря релизов Pokemon TCG с Bulbapedia' },
+  { id: 'moysklad-verify-products',     name: 'Проверка товаров',         icon: '🔍', hour: 1,    enabled: true,  agent: 'аудитор',  desc: 'Сравнение снапшотов с МойСклад, обучение на правках' },
+  { id: 'moysklad-add-images-auto',     name: 'Авто-фото товаров',        icon: '📸', hour: 2,    enabled: true,  agent: 'продакт',  desc: 'Поиск и загрузка фото для товаров с релизом ≤ 7 дней' },
+  { id: 'ozon-competitor-analysis',     name: 'Мониторинг Ozon',          icon: '🔎', hour: 2,    enabled: false, agent: 'продакт',  desc: 'Анализ ассортимента и цен конкурентов на Ozon' },
+  { id: 'moysklad-release-sync',        name: 'Синхронизация → МойСклад', icon: '🔄', hour: 3,    enabled: true,  agent: 'продакт',  desc: 'Создание недостающих товаров из календаря релизов' },
+  { id: 'moysklad-purchase-prices-4',   name: 'Закупочные цены',          icon: '💰', hour: 4,    enabled: true,  agent: 'продакт',  desc: 'Обновление закупочных цен из заказов поставщикам (1/3)' },
+  { id: 'ozon-auto-promo-audit',        name: 'Автоакции Ozon',           icon: '⚡', hour: 4.5,  enabled: false,  agent: 'продакт',  desc: 'Исключение товаров с ценой ниже минимальной' },
+  { id: 'ozon-promo-audit',             name: 'Акции Ozon',               icon: '🏷️', hour: 4.5,  enabled: false, agent: 'продакт',  desc: 'Мониторинг акций Ozon, коррекция цен и удаление' },
+  { id: 'wb-auto-promo-audit',          name: 'Автоакции WB',             icon: '⚡', hour: 5,    enabled: false,  agent: 'продакт',  desc: 'Исключение товаров с ценой ниже минимальной из WB' },
+  { id: 'wb-promo-audit',               name: 'Акции WB',                 icon: '🏷️', hour: 5,    enabled: false, agent: 'продакт',  desc: 'Мониторинг участия товаров в акциях WB' },
+  { id: 'openclaw-daily-audit',         name: 'Аудит OpenClaw',           icon: '🩺', hour: 5.5,  enabled: false,  agent: 'аудитор',  desc: 'Рост контекста, дубли, токены, health check' },
+  { id: 'daily-report',                 name: 'Дневной отчёт',            icon: '📊', hour: 6,    enabled: true,  agent: 'авто',     desc: 'Генерация ежедневного HTML-отчёта о задачах' },
+  { id: 'daily-report-upload',          name: 'Загрузка отчёта на VPS',   icon: '☁️', hour: 6.5,  enabled: true,  agent: 'авто',     desc: 'Загрузка дневного HTML-отчёта на boss.pokebarn.ru' },
+  { id: 'moysklad-backup',              name: 'Бэкап МойСклад',           icon: '🗄️', hour: 7,    enabled: true,  agent: 'аудитор',  desc: 'Экспорт всех товаров из МойСклад в Excel' },
+  { id: 'backup-prompts-readme-8',      name: 'Бэкап промптов',           icon: '💾', hour: 8,    enabled: true,  agent: 'авто',     desc: 'Бэкап README-файлов и prompts/' },
+  { id: 'moysklad-purchase-prices-12',  name: 'Закупочные цены',          icon: '💰', hour: 12,   enabled: true,  agent: 'продакт',  desc: 'Обновление закупочных цен из заказов поставщикам (2/3)' },
+  { id: 'backup-prompts-readme-14',     name: 'Бэкап промптов',           icon: '💾', hour: 14,   enabled: true,  agent: 'авто',     desc: 'Бэкап README-файлов и prompts/' },
+  { id: 'moysklad-purchase-prices-20',  name: 'Закупочные цены',          icon: '💰', hour: 20,   enabled: true,  agent: 'продакт',  desc: 'Обновление закупочных цен из заказов поставщикам (3/3)' },
+  { id: 'backup-prompts-readme-20',     name: 'Бэкап промптов',           icon: '💾', hour: 20,   enabled: true,  agent: 'авто',     desc: 'Бэкап README-файлов и prompts/' },
+  { id: 'ebay-qwintry-sync',            name: 'eBay → Qwintry',           icon: '📦', hour: 22.5, enabled: true,  agent: 'продакт',  desc: 'Синхронизация покупок eBay с Qwintry' },
+];
+
+const AGENT_COLORS = { продакт: '#3fb950', аудитор: '#58a6ff', разработчик: '#e3b341', тестировщик: '#f85149', авто: '#4b5563' };
+
+// ──────────────────────────────────────────────────────
+// HEADER DATE
+// ──────────────────────────────────────────────────────
+(function() {
+  const now = new Date();
+  const wd = ['вс','пн','вт','ср','чт','пт','сб'][now.getDay()];
+  const mo = ['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'][now.getMonth()];
+  const hh = now.getHours().toString().padStart(2,'0');
+  const mm = now.getMinutes().toString().padStart(2,'0');
+  document.getElementById('header-date').textContent = `${wd}, ${now.getDate()} ${mo} ${now.getFullYear()} · ${hh}:${mm}`;
+})();
+
+// ──────────────────────────────────────────────────────
+// SCHEDULE RENDER
+// ──────────────────────────────────────────────────────
+function fmtHour(h) {
+  return Math.floor(h).toString().padStart(2,'0') + ':' + ((h % 1) * 60).toFixed(0).padStart(2,'0');
+}
+
+(function renderSchedule() {
+  const container = document.getElementById('schedule-list');
+  const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+
+  function buildGroup(tasks) {
+    let html = '';
+    tasks.forEach((task, idx) => {
+      const isLast    = idx === tasks.length - 1;
+      const showTime  = idx === 0 || tasks[idx - 1].hour !== task.hour;
+      const color     = task.enabled ? (AGENT_COLORS[task.agent] || '#8b949e') : '#3a3f4b';
+      html += `
+<div class="schedule-item" data-agent="${task.agent}">
+  <div class="schedule-time-col">
+    <div class="schedule-time">${showTime ? fmtHour(task.hour) : ''}</div>
+  </div>
+  <div class="schedule-line-col">
+    <div class="schedule-dot" style="background:${color}"></div>
+    ${!isLast ? '<div class="schedule-connector"></div>' : ''}
+  </div>
+  <div class="schedule-card-wrap">
+    <div class="schedule-card${task.enabled ? '' : ' disabled'}">
+      <div class="schedule-card-header">
+        <div class="schedule-card-name"><span class="icon">${task.icon}</span>${task.name}</div>
+        <div class="schedule-card-badges">
+          ${!task.enabled ? '<span class="disabled-badge">откл.</span>' : ''}
+          <span class="agent-badge ${task.agent}">${cap(task.agent)}</span>
+        </div>
+      </div>
+      <div class="schedule-card-desc">${task.desc}</div>
+    </div>
+  </div>
+</div>`;
+    });
+    return html;
+  }
+
+  const active   = [...TASKS].filter(t =>  t.enabled).sort((a, b) => a.hour - b.hour);
+  const inactive = [...TASKS].filter(t => !t.enabled).sort((a, b) => a.hour - b.hour);
+
+  let html = buildGroup(active);
+
+  if (inactive.length > 0) {
+    html += `<div class="schedule-separator"><span>Отключённые задачи</span></div>`;
+    html += buildGroup(inactive);
+  }
+
+  container.innerHTML = html;
+})();
+
+// ──────────────────────────────────────────────────────
+// MOBILE TABS
+// ──────────────────────────────────────────────────────
+function showTab(side) {
+  const left  = document.querySelector('.left-col');
+  const right = document.querySelector('.right-col');
+  const tabL  = document.getElementById('tab-left');
+  const tabR  = document.getElementById('tab-right');
+  if (side === 'left') {
+    left.classList.remove('hidden');
+    right.classList.remove('visible');
+    tabL.classList.add('active');
+    tabR.classList.remove('active');
+  } else {
+    left.classList.add('hidden');
+    right.classList.add('visible');
+    tabL.classList.remove('active');
+    tabR.classList.add('active');
+  }
+}
+
+// ──────────────────────────────────────────────────────
+// AGENT FILTER
+// ──────────────────────────────────────────────────────
+let activeAgent = null;
+
+function filterAgent(agent) {
+  // Toggle off if same agent clicked again
+  activeAgent = (activeAgent === agent) ? null : agent;
+
+  // Update agent item styles
+  document.querySelectorAll('.agent-item').forEach(el => {
+    el.classList.toggle('active', el.dataset.agent === activeAgent);
+  });
+
+  // Update schedule items
+  document.querySelectorAll('.schedule-item').forEach(el => {
+    if (!activeAgent) {
+      el.classList.remove('dimmed', 'highlighted');
+    } else if (el.dataset.agent === activeAgent) {
+      el.classList.remove('dimmed');
+      el.classList.add('highlighted');
+    } else {
+      el.classList.remove('highlighted');
+      el.classList.add('dimmed');
+    }
+  });
+}
+
+// ──────────────────────────────────────────────────────
+// REPORT PARSING
+// ──────────────────────────────────────────────────────
+function dateToFilename(d) {
+  const dd = d.getDate().toString().padStart(2,'0');
+  const mm = (d.getMonth()+1).toString().padStart(2,'0');
+  return `reports/daily_${dd}.${mm}.${d.getFullYear()}.html`;
+}
+function dateToLabel(d) {
+  return d.getDate().toString().padStart(2,'0') + '.' + (d.getMonth()+1).toString().padStart(2,'0');
+}
+
+function statusFromClassList(el) {
+  const c = el.classList;
+  if (c.contains('status-ok'))       return { cls: 'ok',      label: '✅ Успешно' };
+  if (c.contains('status-warn'))     return { cls: 'warn',    label: '⚠️ Предупреждение' };
+  if (c.contains('status-error'))    return { cls: 'error',   label: '❌ Ошибка' };
+  if (c.contains('status-running'))  return { cls: 'running', label: '🔄 В процессе' };
+  if (c.contains('status-skip'))     return { cls: 'skip',    label: '⏭️ Пропущено' };
+  if (c.contains('status-disabled')) return { cls: 'disabled',label: '— Отключена' };
+  return { cls: 'disabled', label: '?' };
+}
+
+function parseReport(html) {
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  const summaryEl = doc.querySelector('.summary');
+  const summaryHtml = summaryEl ? summaryEl.innerHTML : '';
+
+  const tasks = [];
+  doc.querySelectorAll('.task').forEach(el => {
+    const nameEl   = el.querySelector('.task-name');
+    const idEl     = el.querySelector('.task-id');
+    const statusEl = el.querySelector('.status');
+    const timeEl   = el.querySelector('.time');
+    const resultEl = el.querySelector('.result');
+
+    let name = nameEl ? nameEl.textContent.trim() : '?';
+    const taskId = idEl ? idEl.textContent.trim() : '';
+    if (taskId) name = name.replace(taskId, '').trim();
+
+    const status = statusEl ? statusFromClassList(statusEl) : { cls: 'disabled', label: '?' };
+    const time = timeEl ? timeEl.textContent.replace('Последний запуск: ', '').trim() : '';
+    const resultHtml = resultEl ? resultEl.innerHTML : '';
+    tasks.push({ name, taskId, status, time, resultHtml });
+  });
+  return { summaryHtml, tasks };
+}
+
+function renderReport(parsed) {
+  document.getElementById('report-stats').innerHTML =
+    parsed.summaryHtml || '<span style="color:var(--text-muted)">Сводка недоступна</span>';
+
+  if (!parsed.tasks.length) {
+    document.getElementById('report-tasks').innerHTML = '<div class="empty-msg">Задачи не найдены</div>';
+    return;
+  }
+  let html = '';
+  parsed.tasks.forEach((task, idx) => {
+    const hasResult = task.resultHtml.trim().length > 0;
+    html += `<div class="task-row" id="tr${idx}">
+  <div class="task-row-header" onclick="toggleRow(${idx})">
+    <div class="task-row-left">
+      <span class="task-row-name">${task.name}</span>
+      <span class="task-row-id">${task.taskId}</span>
+    </div>
+    <div class="task-row-right">
+      <span class="task-row-time">${task.time}</span>
+      <span class="status-badge ${task.status.cls}">${task.status.label}</span>
+      ${hasResult ? '<span class="task-row-chevron">▼</span>' : ''}
+    </div>
+  </div>
+  ${hasResult ? `<div class="task-row-body"><div class="task-row-body-inner">${task.resultHtml}</div></div>` : ''}
+</div>`;
+  });
+  document.getElementById('report-tasks').innerHTML = html;
+}
+
+function toggleRow(idx) {
+  const row = document.getElementById('tr' + idx);
+  if (row) row.classList.toggle('open');
+}
+
+// ──────────────────────────────────────────────────────
+// ARCHIVE CHIPS — читаем из report-data.js (window.POKEBARN_REPORTS)
+// ──────────────────────────────────────────────────────
+let archive = [];   // [{isoDate, label, html}]
+let activeIdx = 0;
+
+function renderChips() {
+  document.getElementById('archive-chips').innerHTML = archive.map((item, i) => {
+    const label = i === 0 ? `Сегодня (${item.label})` : item.label;
+    return `<span class="chip${i === activeIdx ? ' active' : ''}" onclick="selectChip(${i})">${label}</span>`;
+  }).join('');
+}
+
+function selectChip(idx) {
+  activeIdx = idx;
+  renderChips();
+  renderReport(parseReport(archive[idx].html));
+}
+
+function init() {
+  if (!window.POKEBARN_REPORTS || !window.POKEBARN_REPORTS.length) {
+    document.getElementById('archive-chips').innerHTML =
+      '<span style="color:var(--text-muted);font-size:12px">Отчёты не найдены</span>';
+    document.getElementById('report-stats').innerHTML =
+      '<span style="color:var(--text-muted)">Файл reports/report-data.js не загружен или пуст</span>';
+    return;
+  }
+
+  archive = window.POKEBARN_REPORTS.map(r => ({
+    isoDate: r.iso,
+    label: r.label,
+    html: r.html,
+  }));
+
+  renderChips();
+  renderReport(parseReport(archive[0].html));
+}
+
+init();
+</script>
+</body>
+</html>
