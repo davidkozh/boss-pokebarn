@@ -375,18 +375,47 @@
       margin-top: 2px;
     }
 
-    /* ── States ── */
-        /* ── Release Workflow ── */
+    /* ── Release Workflow ── */
     .workflow-list { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
-    .workflow-step { display: flex; align-items: flex-start; gap: 10px; background: var(--surface2); border: 1px solid var(--border); border-radius: 7px; padding: 8px 11px; }
-    .workflow-badge { flex-shrink: 0; min-width: 64px; text-align: center; font-size: 10px; font-weight: bold; color: var(--accent-blue); background: #1a3a6b33; border-radius: 4px; padding: 2px 5px; margin-top: 1px; letter-spacing: 0.02em; }
+    .workflow-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 8px 11px;
+    }
+    .workflow-badge {
+      flex-shrink: 0;
+      min-width: 64px;
+      text-align: center;
+      font-size: 10px;
+      font-weight: bold;
+      color: var(--accent-blue);
+      background: #1a3a6b33;
+      border-radius: 4px;
+      padding: 2px 5px;
+      margin-top: 1px;
+      letter-spacing: 0.02em;
+    }
     .workflow-badge.recurring { color: var(--text-muted); background: transparent; }
     .workflow-body { flex: 1; min-width: 0; }
     .workflow-action { font-size: 12px; font-weight: 600; color: var(--text); }
     .workflow-detail { font-size: 11px; color: var(--text-muted); margin-top: 2px; line-height: 1.4; }
-    .workflow-blocker { display: inline-block; margin-top: 4px; font-size: 10px; color: var(--accent-orange); background: #7a4f0022; border: 1px solid #7a4f0055; border-radius: 3px; padding: 1px 5px; }
+    .workflow-blocker {
+      display: inline-block;
+      margin-top: 4px;
+      font-size: 10px;
+      color: var(--accent-orange);
+      background: #7a4f0022;
+      border: 1px solid #7a4f0055;
+      border-radius: 3px;
+      padding: 1px 5px;
+    }
 
-.empty-msg { color: var(--text-muted); font-size: 13px; padding: 12px 0; }
+    /* ── States ── */
+    .empty-msg { color: var(--text-muted); font-size: 13px; padding: 12px 0; }
     .error-msg {
       color: #f87171;
       font-size: 13px;
@@ -528,7 +557,7 @@
       <div class="rules-grid">
         <div class="rule-card warn">
           <div class="rule-card-title">🔄 Синхронизация изменений</div>
-          <div class="rule-card-body">При любом изменении задачи — обновить <strong>все четыре места</strong>: scheduled task + строка <code>**Расписание:**</code> в файле <code>prompts/</code> + массив <code>TASKS</code> в <code>dashboard.html</code> + README агента. Полная справка: <code>prompts/dashboard-reference.md</code></div>
+          <div class="rule-card-body">При любом изменении задачи — обновить <strong>все четыре места</strong>: scheduled task + строка <code>**Расписание:**</code> в файле <code>prompts/</code> + массив <code>TASKS</code> в <code>dashboard.html</code> + README агента.<br><br>⚠️ <strong>При любом изменении <code>dashboard.html</code></strong> — обязательно задеплоить на <code>boss.pokebarn.ru</code>: GitHub API PUT → ISPmanager Shell wget.<br><br>📋 Полная справка: <code>prompts/dashboard-reference.md</code></div>
         </div>
         <div class="rule-card warn">
           <div class="rule-card-title">⚠️ Цены — только из API</div>
@@ -552,9 +581,12 @@
     <div class="section-title">Расписание задач</div>
     <div id="schedule-list" class="schedule-list"></div>
 
+    <!-- Section: Release Workflow — данные из releases/releases-workflow.js -->
     <div class="section" style="margin-top: 28px;">
       <div class="section-title">Схема обновления релизов</div>
-      <div id="workflow-list" class="workflow-list"><span style="color:var(--text-muted);font-size:12px">Загружаю…</span></div>
+      <div id="workflow-list" class="workflow-list">
+        <span style="color:var(--text-muted);font-size:12px">Загружаю…</span>
+      </div>
     </div>
   </div>
 
@@ -806,19 +838,37 @@ function init() {
   renderReport(parseReport(archive[0].html));
 }
 
+init();
 
+// ──────────────────────────────────────────────────────
+// RELEASE WORKFLOW — читаем из releases/releases-workflow.js
+// ──────────────────────────────────────────────────────
 (function renderWorkflow() {
   const container = document.getElementById('workflow-list');
-  if (!window.RELEASE_WORKFLOW || !window.RELEASE_WORKFLOW.length) { container.innerHTML = '<span style="color:var(--text-muted)">releases-workflow.js не загружен</span>'; return; }
+  if (!window.RELEASE_WORKFLOW || !window.RELEASE_WORKFLOW.length) {
+    container.innerHTML = '<span style="color:var(--text-muted);font-size:12px">releases/releases-workflow.js не загружен</span>';
+    return;
+  }
   let html = '';
   window.RELEASE_WORKFLOW.forEach(step => {
-    const bc = step.days === null ? 'workflow-badge recurring' : 'workflow-badge';
-    const bl = step.blocker ? `<span class="workflow-blocker">⛔ ${step.blocker}</span>` : '';
-    html += `<div class="workflow-step"><div class="${bc}">${step.label}</div><div class="workflow-body"><div class="workflow-action">${step.action}</div><div class="workflow-detail">${step.detail}</div>${bl}</div></div>`;
+    const recurring = step.days === null;
+    const badgeClass = recurring ? 'workflow-badge recurring' : 'workflow-badge';
+    const badgeText  = recurring ? step.label : step.label;
+    const blocker    = step.blocker
+      ? `<span class="workflow-blocker">⛔ ${step.blocker}</span>`
+      : '';
+    html += `
+    <div class="workflow-step">
+      <div class="${badgeClass}">${badgeText}</div>
+      <div class="workflow-body">
+        <div class="workflow-action">${step.action}</div>
+        <div class="workflow-detail">${step.detail}</div>
+        ${blocker}
+      </div>
+    </div>`;
   });
   container.innerHTML = html;
 })();
-init();
 </script>
 </body>
 </html>
