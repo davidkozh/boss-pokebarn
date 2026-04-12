@@ -18,10 +18,10 @@ window.POKEBARN_REPORTS = [
     .status-ok { background: #e8f5e9; color: #2e7d32; }
     .status-warn { background: #fff8e1; color: #f57f17; }
     .status-skip { background: #fff3e0; color: #e65100; }
-    .status-disabled { background: #f5f5f5; color: #999; }
     .result { color: #555; margin-top: 8px; font-size: 13.5px; line-height: 1.5; }
     .time { color: #aaa; font-size: 12px; margin-top: 4px; }
     .note { margin-top: 8px; padding: 8px 12px; background: #fff3e0; border-radius: 5px; font-size: 13px; color: #bf6000; }
+    .note-blue { margin-top: 8px; padding: 8px 12px; background: #e3f2fd; border-radius: 5px; font-size: 13px; color: #1565c0; }
     .files-section { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 14px 16px; margin: 10px 0; }
     .file-ok { color: #2e7d32; font-size: 13.5px; margin: 4px 0; }
     .file-miss { color: #c62828; font-size: 13.5px; margin: 4px 0; }
@@ -32,7 +32,6 @@ window.POKEBARN_REPORTS = [
     .detail-list li { margin: 3px 0; }
     .tag { display: inline-block; font-size: 11px; padding: 1px 7px; border-radius: 10px; margin-left: 5px; }
     .tag-soon { background: #fff9c4; color: #f57f17; border: 1px solid #ffe082; }
-    .tag-ok { background: #e8f5e9; color: #2e7d32; }
     .divider { border: none; border-top: 1px solid #eee; margin: 20px 0; }
   </style>
 </head>
@@ -44,11 +43,28 @@ window.POKEBARN_REPORTS = [
   <span><strong>Задач запущено:</strong> 8 из 8 активных</span>
   <span>✅ <strong>Успешно:</strong> 7</span>
   <span>⚠️ <strong>Данные недоступны:</strong> 1</span>
-  <span>⛔️ <strong>Отключена:</strong> 1</span>
-  <span>📋 <strong>Товаров на проверку:</strong> 0</span>
+  <span>&#x1f4cb; <strong>Товаров на проверку:</strong> 0</span>
 </div>
 
-<!-- 1. moysklad-verify-products -->
+<!-- 1. update-pokemon-releases -->
+<div class="task">
+  <div class="task-header">
+    <span class="task-name">Календарь релизов Pokemon TCG <span class="task-id">update-pokemon-releases</span></span>
+    <span class="status status-ok">✅ Успешно</span>
+  </div>
+  <div class="time">Последний запуск: 12.04.2026 00:07</div>
+  <div class="result">
+    Пересчитаны дни до релиза для 84 товаров. Дата в заголовке обновлена на 12.04.2026. Новых товаров на Bulbapedia не обнаружено. HTML-версия календаря (70 KB) обновлена с фильтрами и бейджами.
+  </div>
+  <ul class="detail-list">
+    <li>&#x1f534; Вышел: 61 товар</li>
+    <li>&#x1f7e8; Скоро &lt; 30 дней: 5 товаров (ASC Mega ex Box ×3 + ASC Booster Bundle — 24.04; CRI Build &amp; Battle Box — 09.05)</li>
+    <li>&#x1f7e9; &gt; 30 дней: 18 товаров</li>
+  </ul>
+  <div class="note-blue">&#x1f4c5; <a href="releases/календарь_релизов.html" style="color:#1565c0;">Открыть интерактивный календарь релизов</a></div>
+</div>
+
+<!-- 2. moysklad-verify-products -->
 <div class="task">
   <div class="task-header">
     <span class="task-name">Проверка товаров <span class="task-id">moysklad-verify-products</span></span>
@@ -56,62 +72,15 @@ window.POKEBARN_REPORTS = [
   </div>
   <div class="time">Последний запуск: 12.04.2026 01:07</div>
   <div class="result">
-    Все 19 товаров во всех файлах снапшотов имеют статус <strong>✅ Проверено 29.03.2026</strong>. Снапшотов со статусами ⏳ или 🔍 не обнаружено. Сравнение с МойСклад не потребовалось.
+    Все 19 товаров во всех файлах снапшотов имеют статус <strong>✅ Проверено 29.03.2026</strong>. Снапшотов со статусами ⏳ или &#x1f50d; не обнаружено. Сравнение с МойСклад не потребовалось.
   </div>
   <div class="review-list">
-    <h3>📋 Товары на проверку</h3>
+    <h3>&#x1f4cb; Товары на проверку</h3>
     <div class="review-ok">✅ Нет товаров, ожидающих проверки — все 19 товаров проверены владельцем (29.03.2026).</div>
   </div>
 </div>
 
-<!-- 2. moysklad-release-sync -->
-<div class="task">
-  <div class="task-header">
-    <span class="task-name">Синхронизация релизов <span class="task-id">moysklad-release-sync</span></span>
-    <span class="status status-ok">✅ Успешно</span>
-  </div>
-  <div class="time">Последний запуск: 12.04.2026 03:05</div>
-  <div class="result">
-    Новых товаров для добавления нет — все товары со статусом 🟨 (до 30 дней до релиза) уже есть в МойСклад. Следующая волна ожидается ~22.04.2026, когда товары с датой выхода 22.05.2026 попадут в окно 30 дней:
-  </div>
-  <ul class="detail-list">
-    <li>Mega Lucario ex League Battle Deck <span class="tag tag-soon">40 дней</span></li>
-    <li>Mega Zygarde ex Premium Collection <span class="tag tag-soon">40 дней</span></li>
-    <li>Chaos Rising Бустер-пак / Booster Bundle / ETB / Mini Tin <span class="tag tag-soon">40 дней</span></li>
-  </ul>
-</div>
-
-<!-- 3. moysklad-purchase-prices -->
-<div class="task">
-  <div class="task-header">
-    <span class="task-name">Закупочные цены <span class="task-id">moysklad-purchase-prices</span></span>
-    <span class="status status-warn">⚠️ Данные недоступны</span>
-  </div>
-  <div class="time">Последний запуск: 12.04.2026 04:06</div>
-  <div class="result">
-    Задача запустилась в штатное время. Транскрипт сессии показывает запуск Python-скрипта на VPS — итоговое сообщение не зафиксировано (сессия завершилась без явного отчёта). Рекомендуется проверить вручную.
-  </div>
-</div>
-
-<!-- 4. ebay-qwintry-sync -->
-<div class="task">
-  <div class="task-header">
-    <span class="task-name">eBay / Qwintry синхронизация <span class="task-id">ebay-qwintry-sync</span></span>
-    <span class="status status-ok">✅ Успешно</span>
-  </div>
-  <div class="time">Последний запуск: 11.04.2026 22:32</div>
-  <div class="result">
-    Новых заказов нет. Обновлён трек-номер заказа №32 (Mewtwo SV Promo 052): → <code>1ZG2C0390364543016</code> (UPS). В Qwintry создана ожидаемая посылка <strong>#1017341-US</strong> с декларацией на $9.00.
-  </div>
-  <ul class="detail-list">
-    <li>№30 (Umbreon ex Prismatic): статус → <strong>Delivered</strong> ✅</li>
-    <li>№32 (Mewtwo SV Promo 052): статус → <strong>Delivered (10 апр)</strong> ✅</li>
-    <li>На складе Qwintry: 2 посылки (Squirtle + Ivysaur, бесплатное хранение 43 дня)</li>
-    <li>Ожидается: 5 посылок | Отправлено: 3 (последняя #676582-US от 07.04.26)</li>
-  </ul>
-</div>
-
-<!-- 5. moysklad-add-images-auto -->
+<!-- 3. moysklad-add-images-auto -->
 <div class="task">
   <div class="task-header">
     <span class="task-name">Автозагрузка фото <span class="task-id">moysklad-add-images-auto</span></span>
@@ -136,36 +105,36 @@ window.POKEBARN_REPORTS = [
   </div>
 </div>
 
-<!-- 6. backup-prompts-readme -->
+<!-- 4. moysklad-release-sync -->
 <div class="task">
   <div class="task-header">
-    <span class="task-name">Бэкап промптов и README <span class="task-id">backup-prompts-readme</span></span>
+    <span class="task-name">Синхронизация релизов <span class="task-id">moysklad-release-sync</span></span>
     <span class="status status-ok">✅ Успешно</span>
   </div>
-  <div class="time">Последний запуск: 11.04.2026 20:07 (следующий: ~11:07 и 17:07 сегодня)</div>
+  <div class="time">Последний запуск: 12.04.2026 03:05</div>
   <div class="result">
-    Бэкап <strong>2026-04-11_17-07</strong> выполнен успешно: сохранено 80 файлов (16 MB) — 5 README, credentials.md, dashboard.html, 27 промптов, 2 скрипта, 46 отчётов. Всего хранится 24 бэкапа.
-  </div>
-</div>
-
-<!-- 7. update-pokemon-releases -->
-<div class="task">
-  <div class="task-header">
-    <span class="task-name">Календарь релизов Pokemon TCG <span class="task-id">update-pokemon-releases</span></span>
-    <span class="status status-ok">✅ Успешно</span>
-  </div>
-  <div class="time">Последний запуск: 12.04.2026 00:07</div>
-  <div class="result">
-    Пересчитаны дни до релиза для 84 товаров. Дата в заголовке обновлена на 12.04.2026. Новых товаров на Bulbapedia не обнаружено. HTML-версия календаря (70 KB) обновлена с фильтрами и бейджами.
+    Новых товаров для добавления нет — все товары со статусом &#x1f7e8; (до 30 дней до релиза) уже есть в МойСклад. Следующая волна ожидается ~22.04.2026, когда товары с датой выхода 22.05.2026 попадут в окно 30 дней:
   </div>
   <ul class="detail-list">
-    <li>🟥 Вышел: 61 товар</li>
-    <li>🟨 Скоро &lt; 30 дней: 5 товаров (ASC Mega ex Box × 3 + ASC Booster Bundle — 24.04; CRI Build &amp; Battle Box — 09.05)</li>
-    <li>🟩 > 30 дней: 18 товаров</li>
+    <li>Mega Lucario ex League Battle Deck <span class="tag tag-soon">40 дней</span></li>
+    <li>Mega Zygarde ex Premium Collection <span class="tag tag-soon">40 дней</span></li>
+    <li>Chaos Rising Бустер-пак / Booster Bundle / ETB / Mini Tin <span class="tag tag-soon">40 дней</span></li>
   </ul>
 </div>
 
-<!-- 8. moysklad-backup -->
+<!-- 5. moysklad-purchase-prices -->
+<div class="task">
+  <div class="task-header">
+    <span class="task-name">Закупочные цены <span class="task-id">moysklad-purchase-prices</span></span>
+    <span class="status status-warn">⚠️ Данные недоступны</span>
+  </div>
+  <div class="time">Последний запуск: 12.04.2026 04:06</div>
+  <div class="result">
+    Задача запустилась в штатное время. Транскрипт сессии показывает запуск Python-скрипта на VPS — итоговое сообщение не зафиксировано (сессия завершилась без явного отчёта). Рекомендуется проверить вручную.
+  </div>
+</div>
+
+<!-- 6. moysklad-backup -->
 <div class="task">
   <div class="task-header">
     <span class="task-name">Бэкап МойСклад <span class="task-id">moysklad-backup</span></span>
@@ -177,19 +146,39 @@ window.POKEBARN_REPORTS = [
   </div>
 </div>
 
-<!-- 9. ozon-competitor-analysis -->
+<!-- 7. backup-prompts-readme -->
 <div class="task">
   <div class="task-header">
-    <span class="task-name">Мониторинг конкурентов Ozon <span class="task-id">ozon-competitor-analysis</span></span>
-    <span class="status status-disabled">⛔️ Отключена</span>
+    <span class="task-name">Бэкап промптов и README <span class="task-id">backup-prompts-readme</span></span>
+    <span class="status status-ok">✅ Успешно</span>
   </div>
-  <div class="time">Последний запуск: 06.03.2026 02:00</div>
-  <div class="result" style="color:#aaa;">Задача отключена.</div>
+  <div class="time">Последний запуск: 11.04.2026 20:07 (следующий: ~11:07 и 17:07 сегодня)</div>
+  <div class="result">
+    Бэкап <strong>2026-04-11_17-07</strong> выполнен успешно: сохранено 80 файлов (16 MB) — 5 README, credentials.md, dashboard.html, 27 промптов, 2 скрипта, 46 отчётов. Всего хранится 24 бэкапа.
+  </div>
+</div>
+
+<!-- 8. ebay-qwintry-sync -->
+<div class="task">
+  <div class="task-header">
+    <span class="task-name">eBay / Qwintry синхронизация <span class="task-id">ebay-qwintry-sync</span></span>
+    <span class="status status-ok">✅ Успешно</span>
+  </div>
+  <div class="time">Последний запуск: 11.04.2026 22:32</div>
+  <div class="result">
+    Новых заказов нет. Обновлён трек-номер заказа №32 (Mewtwo SV Promo 052): → <code>1ZG2C0390364543016</code> (UPS). В Qwintry создана ожидаемая посылка <strong>#1017341-US</strong> с декларацией на $9.00.
+  </div>
+  <ul class="detail-list">
+    <li>&#x2116;30 (Umbreon ex Prismatic): статус → <strong>Delivered</strong> ✅</li>
+    <li>&#x2116;32 (Mewtwo SV Promo 052): статус → <strong>Delivered (10 апр)</strong> ✅</li>
+    <li>На складе Qwintry: 2 посылки (Squirtle + Ivysaur, бесплатное хранение 43 дня)</li>
+    <li>Ожидается: 5 посылок | Отправлено: 3 (последняя #676582-US от 07.04.26)</li>
+  </ul>
 </div>
 
 <hr class="divider">
 
-<h2>📁 Файлы</h2>
+<h2>&#x1f4c1; Файлы</h2>
 <div class="files-section">
   <div class="file-ok">✅ Бэкап МойСклад (вчера): товары_11.04.2026.xlsx — 451.6 КБ, 694+8 товаров</div>
   <div class="file-miss">⏳ Бэкап МойСклад (сегодня): товары_12.04.2026.xlsx — ещё не создан (запланирован на ~10:08)</div>
@@ -200,8 +189,7 @@ window.POKEBARN_REPORTS = [
 </div>
 
 </body>
-</html>
-` },
+</html>` },
   { iso: "2026-04-11", label: "11.04", fullLabel: "11.04.2026", html: `<!DOCTYPE html>
 <html lang="ru">
 <head>
