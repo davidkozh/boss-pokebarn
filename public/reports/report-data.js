@@ -1,4 +1,155 @@
 window.POKEBARN_REPORTS = [
+  { iso: "2026-04-14", label: "14.04", fullLabel: "14.04.2026", html: `<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Утренний отчёт Pokebarn — 14.04.2026</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #333; }
+    h1 { font-size: 24px; border-bottom: 2px solid #333; padding-bottom: 8px; }
+    h2 { font-size: 18px; margin-top: 28px; }
+    .summary { background: #f5f5f5; padding: 16px; border-radius: 8px; margin: 16px 0; }
+    .task { border: 1px solid #e0e0e0; border-radius: 8px; padding: 16px; margin: 12px 0; }
+    .task-header { display: flex; justify-content: space-between; align-items: center; }
+    .task-name { font-weight: 600; font-size: 16px; }
+    .task-id { font-size: 12px; color: #999; font-family: monospace; margin-left: 6px; font-weight: 400; }
+    .status { padding: 4px 12px; border-radius: 12px; font-size: 13px; font-weight: 500; }
+    .status-ok { background: #e8f5e9; color: #2e7d32; }
+    .status-error { background: #ffebee; color: #c62828; }
+    .status-skip { background: #fff3e0; color: #e65100; }
+    .status-warn { background: #fff8e1; color: #f57f17; }
+    .result { color: #666; margin-top: 8px; font-size: 14px; }
+    .time { color: #999; font-size: 12px; margin-top: 4px; }
+    .files { margin-top: 8px; }
+    .file-ok { color: #2e7d32; margin: 4px 0; font-size: 14px; }
+    .file-miss { color: #c62828; margin: 4px 0; font-size: 14px; }
+    .file-warn { color: #e65100; margin: 4px 0; font-size: 14px; }
+    .review-list { margin-top: 12px; padding: 12px; background: #fff8e1; border-radius: 6px; border-left: 4px solid #f9a825; }
+    .review-list h3 { margin: 0 0 8px 0; font-size: 14px; color: #f57f17; }
+    .review-item { margin: 6px 0; font-size: 14px; }
+    .review-item a { color: #1565c0; text-decoration: none; }
+    .note-blue { margin-top: 8px; padding: 8px 12px; background: #e3f2fd; border-radius: 6px; border-left: 4px solid #1565c0; font-size: 13px; color: #1565c0; }
+    .note-warn { margin-top: 8px; padding: 8px 12px; background: #fff8e1; border-radius: 6px; border-left: 4px solid #f9a825; font-size: 13px; color: #e65100; }
+    .note-ok { margin-top: 8px; padding: 8px 12px; background: #e8f5e9; border-radius: 6px; border-left: 4px solid #4caf50; font-size: 13px; color: #2e7d32; }
+  </style>
+</head>
+<body>
+  <h1>☀️ Утренний отчёт — 14.04.2026</h1>
+
+  <div class="summary">
+    <strong>Задач запущено:</strong> 9 из 9 активных &nbsp;|&nbsp;
+    <strong>Успешно:</strong> 8 &nbsp;|&nbsp;
+    <strong>Ошибки:</strong> 1 &nbsp;|&nbsp;
+    <strong>Не запускались:</strong> 0
+  </div>
+
+  <!-- 1. update-pokemon-releases — ВСЕГДА ПЕРВАЯ -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">📅 Календарь релизов Pokemon TCG <span class="task-id">update-pokemon-releases</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 14.04.2026 00:07 МСК</div>
+    <div class="result">Обновлена дата на 14.04.2026, пересчитаны дни до релиза для всех 84 товаров. Новых товаров с Bulbapedia не обнаружено. Excel и HTML-календарь успешно сгенерированы.</div>
+    <div class="note-blue">📅 <a href="releases/календарь_релизов.html" style="color:#1565c0;">Открыть интерактивный календарь релизов</a></div>
+  </div>
+
+  <!-- 2. moysklad-verify-products -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">🔍 Проверка товаров <span class="task-id">moysklad-verify-products</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 14.04.2026 01:07 МСК</div>
+    <div class="result">Все 19 товаров проверены владельцем (✅ Проверено 29.03.2026). Товаров, ожидающих проверки: 0. Новых товаров со статусом ⏳ или 🔍 не обнаружено.</div>
+    <div class="note-ok">✅ Нет товаров, требующих проверки</div>
+  </div>
+
+  <!-- 3. moysklad-add-images-auto -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">📸 Авто-фото товаров <span class="task-id">moysklad-add-images-auto</span></span>
+      <span class="status status-warn">⚠️ Успешно (замечание)</span>
+    </div>
+    <div class="time">Последний запуск: 14.04.2026 02:06 МСК</div>
+    <div class="result">Проверено 5 товаров: загружено 1 фото (P-BLS-POR-03 — фото front из miniaturemarket.com). 4 pre-release товара (ASC, 24.04) уже имеют фото.</div>
+    <div class="note-warn">⚠️ P-BLS-POR-03: фото back (1500×1500) подготовлено локально, требуется ручная загрузка в МойСклад</div>
+  </div>
+
+  <!-- 4. moysklad-release-sync -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">🔄 Синхронизация → МойСклад <span class="task-id">moysklad-release-sync</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 14.04.2026 03:05 МСК</div>
+    <div class="result">Новых товаров для добавления нет. Все 5 позиций со статусом 🟨 &lt; 30 дней уже обработаны ранее. Ближайшие новые кандидаты — ориентировочно 22 апреля (сет Chaos Rising).</div>
+  </div>
+
+  <!-- 5. moysklad-purchase-prices -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">💰 Закупочные цены <span class="task-id">moysklad-purchase-prices</span></span>
+      <span class="status status-error">❌ Ошибка</span>
+    </div>
+    <div class="time">Последний запуск: 14.04.2026 04:05 МСК</div>
+    <div class="result">Скрипт обновления закупочных цен не выполнен: Chrome-расширение недоступно в автоматическом режиме (ошибка «No URL available»), computer-use требует одобрения пользователя.</div>
+    <div class="note-warn">⚠️ Требуется ручной запуск: hpanel.hostinger.com → Terminal → <code>python3 /root/purchase_prices.py</code></div>
+  </div>
+
+  <!-- 6. moysklad-backup -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">🗄️ Бэкап МойСклад <span class="task-id">moysklad-backup</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 13.04.2026 07:08 МСК (бэкап за 14.04 по расписанию в 07:00)</div>
+    <div class="result">Файл товары_13.04.2026.xlsx: 702 товара, 110 столбцов, 451.9 КБ. Всего в папке backup: 24 файла (март–апрель 2026).</div>
+  </div>
+
+  <!-- 7. backup-prompts-readme -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">💾 Бэкап промптов <span class="task-id">backup-prompts-readme</span></span>
+      <span class="status status-warn">⚠️ Успешно (замечание)</span>
+    </div>
+    <div class="time">Последний запуск: 13.04.2026 20:07 МСК</div>
+    <div class="result">Сохранено 82 файла, 16 МБ (README, credentials, dashboard, prompts/, scripts/, reports/). Всего бэкапов: 30.</div>
+    <div class="note-warn">⚠️ Папки 2026-04-06_12-25 и 2026-04-06_14-07 не удалены: файл панель_задач.html защищён (Permission denied)</div>
+  </div>
+
+  <!-- 8. ebay-qwintry-sync -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">📦 eBay → Qwintry <span class="task-id">ebay-qwintry-sync</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 13.04.2026 22:32 МСК</div>
+    <div class="result">3 строки обновлены → Delivered (строки 29, 32, 34). Созданы 3 посылки Qwintry с декларациями (строки 35, 37, 38: Holo Energy, Paldea Evolved, 32 Card Lot). Исправлен баг строки 36 (неверный URL в колонке M).</div>
+  </div>
+
+  <!-- 9. daily-report-upload -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">☁️ Загрузка отчёта на VPS <span class="task-id">daily-report-upload</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 13.04.2026 06:35 МСК (вчерашний отчёт)</div>
+    <div class="result">dashboard.html (34 006 байт) и report-data.js (176 187 байт) успешно загружены на boss.pokebarn.ru через git push → Vercel.</div>
+    <div class="note-blue">🌐 <a href="https://boss.pokebarn.ru/dashboard.html" style="color:#1565c0;">boss.pokebarn.ru/dashboard.html</a></div>
+  </div>
+
+  <h2>📁 Файлы</h2>
+  <div class="files">
+    <div class="file-ok">✅ Бэкап МойСклад: товары_13.04.2026.xlsx (451.9 КБ, 702 товара) — бэкап за 14.04 по расписанию в 07:00</div>
+    <div class="file-ok">✅ Календарь релизов: releases/календарь_релизов.xlsx + .html — обновлено 14.04.2026 00:11–00:12</div>
+    <div class="file-ok">✅ eBay таблица: ebay/покупки_в_америке.xlsx — обновлено 13.04.2026 22:58</div>
+    <div class="file-ok">✅ Снапшот verify: moysklad/snapshots/verify_14.04.2026.md — 0 товаров на проверке</div>
+    <div class="file-ok">✅ Бэкап промптов: backups/2026-04-13_17-07 — последний из 30</div>
+    <div class="file-warn">⚠️ Бэкап промптов: папки 2026-04-06_12-25 и _14-07 не удаляются (Permission denied)</div>
+  </div>
+</body>
+</html>` },
   { iso: "2026-04-13", label: "13.04", fullLabel: "13.04.2026", html: `<!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -44,7 +195,7 @@ window.POKEBARN_REPORTS = [
   <span><strong>Задач запущено:</strong> 8 из 8 активных</span>
   <span>✅ <strong>Успешно:</strong> 8</span>
   <span>❌ <strong>Ошибки:</strong> 0</span>
-  <span>&#x1f4cb; <strong>Товаров на проверку:</strong> 0</span>
+  <span>📋 <strong>Товаров на проверку:</strong> 0</span>
 </div>
 
 <!-- 1. update-pokemon-releases -->
@@ -58,11 +209,11 @@ window.POKEBARN_REPORTS = [
     Обновлено 84 статуса и дни до релиза. Проверена Bulbapedia — новых товаров не обнаружено. Форматирование применено, Excel и HTML-версия обновлены.
   </div>
   <ul class="detail-list">
-    <li>&#x1f534; Вышел: 61 товар</li>
-    <li>&#x1f7e8; Скоро &lt; 30 дн: 5 товаров (Ascended Heroes Mega ex Box ×3, Booster Bundle, Chaos Rising B&amp;B)</li>
-    <li>&#x1f7e9; &gt; 30 дней: 18 товаров (Chaos Rising основная линейка, Mega Moonlight, Lumiose и др.)</li>
+    <li>🔴 Вышел: 61 товар</li>
+    <li>🟨 Скоро &lt; 30 дн: 5 товаров (Ascended Heroes Mega ex Box ×3, Booster Bundle, Chaos Rising B&amp;B)</li>
+    <li>🟩 &gt; 30 дней: 18 товаров (Chaos Rising основная линейка, Mega Moonlight, Lumiose и др.)</li>
   </ul>
-  <div class="note-blue">&#x1f4c5; <a href="releases/календарь_релизов.html" style="color:#1565c0;">Открыть интерактивный календарь релизов</a></div>
+  <div class="note-blue">📅 <a href="releases/календарь_релизов.html" style="color:#1565c0;">Открыть интерактивный календарь релизов</a></div>
 </div>
 
 <!-- 2. moysklad-verify-products -->
@@ -73,9 +224,10 @@ window.POKEBARN_REPORTS = [
   </div>
   <div class="time">Последний запуск: 13.04.2026 01:07</div>
   <div class="result">
-    Все 19 товаров проверены владельцем (статус ✅ Проверено 29.03.2026). Новых товаров со статусом ⏳ или &#x1f50d; не обнаружено.
+    Все 19 товаров проверены владельцем (статус ✅ Проверено 29.03.2026). Новых товаров со статусом ⏳ или 🔍 не обнаружено — сравнение с МойСклад не потребовалось.
+    Отчёт сохранён: <code>moysklad/snapshots/verify_13.04.2026.md</code>
   </div>
-  <div style="font-size:13px; color:#888; margin-top:8px; font-style:italic;">&#x1f4cb; Товаров на проверку: 0</div>
+  <div style="font-size:13px; color:#888; margin-top:8px; font-style:italic;">📋 Товаров на проверку: 0</div>
 </div>
 
 <!-- 3. moysklad-add-images-auto -->
@@ -86,7 +238,7 @@ window.POKEBARN_REPORTS = [
   </div>
   <div class="time">Последний запуск: 13.04.2026 02:06</div>
   <div class="result">
-    Проверено 8 товаров — у всех уже есть фото, загрузка не потребовалась.
+    Проверено 8 товаров — у всех уже есть фото в МойСклад, загрузка не потребовалась. Таблица <code>releases/календарь_релизов.xlsx</code> обновлена (колонка «Фото» ✅ для 8 товаров).
   </div>
   <table class="detail-table">
     <tr><td>Группа A (pre-release ~24.04)</td><td>Mega Meganium ✅ · Mega Emboar ✅ · Mega Feraligatr ✅ · Booster Bundle ✅</td></tr>
@@ -102,7 +254,9 @@ window.POKEBARN_REPORTS = [
   </div>
   <div class="time">Последний запуск: 13.04.2026 03:05</div>
   <div class="result">
-    Новых товаров нет. Ближайшие кандидаты (~39 дней): Chaos Rising + Mega Lucario ex — перейдут в &#x1f7e8; около 22.04.2026.
+    Новых товаров нет. Все ранее добавленные товары Ascended Heroes обработаны (4 позиции ✅, 1 исключена — Prerelease Kit).
+    Ближайшие кандидаты (~39 дней): Chaos Rising линейка и Mega Lucario ex League Battle Deck — перейдут в 🟨 около 22.04.2026.
+    Снапшот сохранён: <code>moysklad/snapshots/sync_13.04.2026.md</code>
   </div>
   <ul class="detail-list">
     <li>Mega Lucario ex League Battle Deck <span class="tag tag-soon">39 дней</span></li>
@@ -119,12 +273,13 @@ window.POKEBARN_REPORTS = [
   </div>
   <div class="time">Последний запуск: 13.04.2026 04:05</div>
   <div class="result">
-    Скрипт выполнен успешно. Обработано 22 заказа, проверено 30 товаров — обновлений не потребовалось.
+    Скрипт выполнен успешно. Обработано 22 заказа, проверено 30 товаров — обновлений не потребовалось, все закупочные цены уже актуальны.
   </div>
   <table class="detail-table">
     <tr><td>Заказов обработано</td><td>22</td></tr>
     <tr><td>Товаров проверено</td><td>30</td></tr>
     <tr><td>Цены обновлены</td><td>0</td></tr>
+    <tr><td>Ошибок</td><td>0</td></tr>
   </table>
 </div>
 
@@ -136,8 +291,8 @@ window.POKEBARN_REPORTS = [
   </div>
   <div class="time">Последний запуск: 12.04.2026 07:08 (следующий: 13.04.2026 ~07:08)</div>
   <div class="result">
-    Файл <strong>товары_12.04.2026.xlsx</strong> сохранён: 702 записи (694+8), 451.5 КБ.
-    Бэкап за сегодня (13.04) запустится в 07:00 — ещё не создан.
+    Файл <strong>товары_12.04.2026.xlsx</strong> сохранён: 702 записи (694 товара + 8 модификаций), 110 столбцов, 451.5 КБ.
+    Бэкап за сегодня (13.04) запустится в 07:00 — ещё не создан в момент генерации отчёта.
   </div>
 </div>
 
@@ -149,7 +304,7 @@ window.POKEBARN_REPORTS = [
   </div>
   <div class="time">Последний запуск: 12.04.2026 20:07 (следующий: ~08:07 и 14:07 сегодня)</div>
   <div class="result">
-    Бэкап <strong>2026-04-12_17-07</strong>: 81 файл (16 МБ) — 5 README, 30 промптов, 41 отчёт. Всего 27 бэкапов.
+    Бэкап <strong>2026-04-12_17-07</strong> выполнен успешно: сохранено 81 файл (16 МБ) — 5 README, credentials.md, dashboard.html, 30 промптов, 3 скрипта, 41 файл отчётов. Всего хранится 27 бэкапов.
   </div>
 </div>
 
@@ -161,7 +316,7 @@ window.POKEBARN_REPORTS = [
   </div>
   <div class="time">Последний запуск: 12.04.2026 22:32</div>
   <div class="result">
-    Получен трек-номер <strong>870559469946</strong> (FedEx) для «Тренер Card Bundle». Создана посылка <strong>#1017407-US</strong> в Qwintry ($7.39). Таблица обновлена.
+    Получен новый трек-номер <strong>870559469946</strong> (FedEx) для «Pokémon TCG Trainer Card Bundle». Создана ожидаемая посылка <strong>#1017407-US</strong> в Qwintry ($7.39). Таблица обновлена.
   </div>
   <table class="detail-table">
     <tr><td>Ожидаемые посылки</td><td>6 шт. (добавлена #1017407-US)</td></tr>
@@ -173,18 +328,19 @@ window.POKEBARN_REPORTS = [
 
 <hr class="divider">
 
-<h2>&#x1f4c1; Файлы</h2>
+<h2>📁 Файлы</h2>
 <div class="files-section">
-  <div class="file-ok">✅ Бэкап МойСклад (вчера): товары_12.04.2026.xlsx — 451.5 КБ</div>
-  <div class="file-warn">⏳ Бэкап МойСклад (сегодня): ещё не создан (запуск в 07:00)</div>
+  <div class="file-ok">✅ Бэкап МойСклад (вчера): товары_12.04.2026.xlsx — 451.5 КБ, 694+8 товаров</div>
+  <div class="file-warn">⏳ Бэкап МойСклад (сегодня): товары_13.04.2026.xlsx — ещё не создан (запустится в 07:00)</div>
   <div class="file-ok">✅ Календарь релизов: releases/календарь_релизов.xlsx — обновлён 13.04.2026 в 00:07</div>
   <div class="file-ok">✅ Покупки eBay: ebay/покупки_в_америке.xlsx — обновлён 12.04.2026 в 20:31</div>
   <div class="file-ok">✅ Снапшот МойСклад: moysklad/snapshots/sync_13.04.2026.md — создан</div>
-  <div class="file-ok">✅ Последний бэкап: backups/2026-04-12_17-07 — 81 файл, 16 МБ</div>
+  <div class="file-ok">✅ Последний бэкап промптов: backups/2026-04-12_17-07 — 81 файл, 16 МБ</div>
 </div>
 
 </body>
-</html>` },
+</html>
+` },
   { iso: "2026-04-12", label: "12.04", fullLabel: "12.04.2026", html: `<!DOCTYPE html>
 <html lang="ru">
 <head>
