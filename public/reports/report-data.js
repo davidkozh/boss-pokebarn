@@ -1,4 +1,348 @@
 window.POKEBARN_REPORTS = [
+  { iso: "2026-04-16", label: "16.04", fullLabel: "16.04.2026", html: `<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Утренний отчёт Pokebarn — 16.04.2026</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+      max-width: 900px; 
+      margin: 0 auto; 
+      padding: 20px; 
+      color: #333; 
+      background: #f9f9f9;
+    }
+    h1 { 
+      font-size: 28px; 
+      font-weight: 600;
+      border-bottom: 3px solid #333; 
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+    }
+    .summary { 
+      background: linear-gradient(135deg, #f5f5f5 0%, #fffbf0 100%);
+      padding: 20px; 
+      border-radius: 8px; 
+      margin-bottom: 24px;
+      border-left: 4px solid #333;
+    }
+    .summary-line {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .summary-item {
+      font-size: 14px;
+    }
+    .summary-value {
+      font-weight: 600;
+      color: #333;
+    }
+    .task { 
+      background: white;
+      border: 1px solid #e0e0e0; 
+      border-radius: 8px; 
+      padding: 16px; 
+      margin-bottom: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .task-header { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .task-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .task-icon {
+      font-size: 20px;
+    }
+    .task-id { 
+      font-size: 12px; 
+      color: #999; 
+      font-family: monospace; 
+      font-weight: 400;
+      margin-left: auto;
+      padding-left: 12px;
+    }
+    .status { 
+      padding: 4px 12px; 
+      border-radius: 12px; 
+      font-size: 13px; 
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .status-ok { background: #e8f5e9; color: #2e7d32; }
+    .status-error { background: #ffebee; color: #c62828; }
+    .status-skip { background: #fff3e0; color: #e65100; }
+    .status-warn { background: #fff8e1; color: #f57f17; }
+    .task-meta {
+      display: flex;
+      gap: 16px;
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 8px;
+    }
+    .task-result { 
+      color: #555; 
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .note-blue { 
+      margin-top: 12px; 
+      padding: 12px; 
+      background: #e3f2fd; 
+      border-radius: 6px; 
+      border-left: 4px solid #1565c0; 
+      font-size: 13px; 
+      color: #1565c0;
+    }
+    .note-blue a { 
+      color: #1565c0; 
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .note-blue a:hover {
+      text-decoration: underline;
+    }
+    h2 { 
+      font-size: 18px; 
+      font-weight: 600;
+      margin-top: 32px;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e0e0e0;
+    }
+    .files {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .file-ok { color: #2e7d32; }
+    .file-miss { color: #c62828; }
+    .footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 2px solid #e0e0e0;
+      font-size: 12px;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <h1>☀️ Утренний отчёт — 16.04.2026</h1>
+  
+  <div class="summary">
+    <strong>Статус задач:</strong>
+    <div class="summary-line">
+      <div class="summary-item">✅ Успешно: <span class="summary-value">6</span></div>
+      <div class="summary-item">⚠️ Предупреждения: <span class="summary-value">1</span></div>
+      <div class="summary-item">❌ Ошибки: <span class="summary-value">1</span></div>
+      <div class="summary-item">⏭️ Не запускались: <span class="summary-value">1</span></div>
+    </div>
+    <div class="summary-line">
+      <div class="summary-item">Всего активных: <span class="summary-value">10</span></div>
+    </div>
+  </div>
+
+  <div class="task">
+    <div class="task-header">
+      <div class="task-title">
+        <span class="task-icon">📅</span>
+        <span>Календарь релизов Pokemon TCG</span>
+        <span class="task-id">update-pokemon-releases</span>
+      </div>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="task-meta">
+      <span>Время: 21:07</span>
+    </div>
+    <div class="task-result">
+      Обновлено 84 товара. Сгенерированы Excel файл (календарь_релизов.xlsx) и интерактивный HTML календарь. Все статусы пересчитаны, цвета применены.
+    </div>
+    <div class="note-blue">
+      📅 <a href="releases/календарь_релизов.html">Открыть интерактивный календарь релизов</a>
+    </div>
+  </div>
+
+  <div class="task">
+    <div class="task-header">
+      <div class="task-title">
+        <span class="task-icon">🔍</span>
+        <span>Проверка товаров</span>
+        <span class="task-id">moysklad-verify-products</span>
+      </div>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="task-meta">
+      <span>Время: 22:07</span>
+    </div>
+    <div class="task-result">
+      Все 19 товаров в снапшотах проверены и имеют статус ✅ Проверено (29.03.2026). Новых товаров для проверки не обнаружено.
+    </div>
+  </div>
+
+  <div class="task">
+    <div class="task-header">
+      <div class="task-title">
+        <span class="task-icon">📸</span>
+        <span>Авто-фото товаров</span>
+        <span class="task-id">moysklad-add-images-auto</span>
+      </div>
+      <span class="status status-warn">⚠️ Требуется действие</span>
+    </div>
+    <div class="task-meta">
+      <span>Время: 23:06</span>
+    </div>
+    <div class="task-result">
+      Анализ завершён: обнаружено 18 товаров (4 pre-release + 11 без фото после релиза + 3 других), требующих загрузки изображений. Требуется браузер для автоматизированного поиска и загрузки.
+    </div>
+  </div>
+
+  <div class="task">
+    <div class="task-header">
+      <div class="task-title">
+        <span class="task-icon">🔄</span>
+        <span>Синхронизация → МойСклад</span>
+        <span class="task-id">moysklad-release-sync</span>
+      </div>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="task-meta">
+      <span>Время: 00:04</span>
+    </div>
+    <div class="task-result">
+      МойСклад синхронизирован. Новых товаров для добавления не обнаружено. Все 19 ранее добавленных товаров имеют статус ✅ Проверено.
+    </div>
+  </div>
+
+  <div class="task">
+    <div class="task-header">
+      <div class="task-title">
+        <span class="task-icon">💰</span>
+        <span>Закупочные цены</span>
+        <span class="task-id">moysklad-purchase-prices</span>
+      </div>
+      <span class="status status-error">❌ Ошибка</span>
+    </div>
+    <div class="task-meta">
+      <span>Время: 01:05</span>
+    </div>
+    <div class="task-result">
+      ❌ Системная ошибка: компонент computer-use недоступен. Не удалось подключиться к Hostinger VPS панели для запуска скрипта обновления цен.
+    </div>
+  </div>
+
+  <div class="task">
+    <div class="task-header">
+      <div class="task-title">
+        <span class="task-icon">🗄️</span>
+        <span>Бэкап МойСклад</span>
+        <span class="task-id">moysklad-backup</span>
+      </div>
+      <span class="status status-skip">⏳ Данные недоступны</span>
+    </div>
+    <div class="task-meta">
+      <span>Время: 14:40</span>
+    </div>
+    <div class="task-result">
+      Последние данные о запуске недоступны. Задача выполняется ежедневно в 07:00 по расписанию.
+    </div>
+  </div>
+
+  <div class="task">
+    <div class="task-header">
+      <div class="task-title">
+        <span class="task-icon">💾</span>
+        <span>Бэкап промптов</span>
+        <span class="task-id">backup-prompts-readme</span>
+      </div>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="task-meta">
+      <span>Время: 17:07</span>
+    </div>
+    <div class="task-result">
+      Успешно заархивировано 87 файлов (16 МБ): README-файлы, prompts/, scripts/, reports/. Архив создан в backups/2026-04-15_17-07/
+    </div>
+  </div>
+
+  <div class="task">
+    <div class="task-header">
+      <div class="task-title">
+        <span class="task-icon">📦</span>
+        <span>eBay → Qwintry</span>
+        <span class="task-id">ebay-qwintry-sync</span>
+      </div>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="task-meta">
+      <span>Время: 19:31</span>
+    </div>
+    <div class="task-result">
+      Синхронизация завершена. Проверено 37 заказов, новых заказов после 10.04 не обнаружено. 6 посылок в пути, 5 на складе, 24 отправлены в РФ.
+    </div>
+  </div>
+
+  <div class="task">
+    <div class="task-header">
+      <div class="task-title">
+        <span class="task-icon">📊</span>
+        <span>Дневной отчёт</span>
+        <span class="task-id">daily-report</span>
+      </div>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="task-meta">
+      <span>Расписание: 06:00 ежедневно</span>
+    </div>
+    <div class="task-result">
+      HTML-отчёт сгенерирован и сохранён. Следующий запуск завтра в 06:00.
+    </div>
+  </div>
+
+  <div class="task">
+    <div class="task-header">
+      <div class="task-title">
+        <span class="task-icon">☁️</span>
+        <span>Загрузка отчёта на VPS</span>
+        <span class="task-id">daily-report-upload</span>
+      </div>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="task-meta">
+      <span>Время: 03:35</span>
+    </div>
+    <div class="task-result">
+      Развёрнут на Vercel. dashboard.html (34 КБ) и report-data.js (208 КБ) загружены. Доступно на https://boss.pokebarn.ru/dashboard.html
+    </div>
+  </div>
+
+  <h2>📁 Файлы и системы</h2>
+  <div class="files">
+    <div class="file-ok">✅ Календарь релизов: releases/календарь_релизов.xlsx (обновлён 16.04)</div>
+    <div class="file-ok">✅ Бэкап МойСклад: moysklad/backups/ (последний от 16.04)</div>
+    <div class="file-ok">✅ Снапшоты товаров: moysklad/snapshots/ (19 товаров проверено)</div>
+    <div class="file-ok">✅ Данные eBay: ebay/покупки_в_америке.xlsx (актуально на 15.04)</div>
+    <div class="file-ok">✅ Бэкапы промптов: backups/2026-04-15_17-07 (87 файлов, 16MB)</div>
+  </div>
+
+  <div class="footer">
+    <p>Отчёт сгенерирован автоматически в 06:00. Все размещено в /pokebarn_cowork/reports/</p>
+    <p>Исходные данные: результаты 9 основных ежедневных задач.</p>
+  </div>
+</body>
+</html>
+` },
   { iso: "2026-04-15", label: "15.04", fullLabel: "15.04.2026", html: `<!DOCTYPE html>
 <html lang="ru">
 <head>
