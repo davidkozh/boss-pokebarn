@@ -1,4 +1,146 @@
 window.POKEBARN_REPORTS = [
+  { iso: "2026-04-19", label: "19.04", fullLabel: "19.04.2026", html: `<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Утренний отчёт Pokebarn — 19.04.2026</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #333; }
+    h1 { font-size: 24px; border-bottom: 2px solid #333; padding-bottom: 8px; }
+    h2 { font-size: 18px; margin-top: 28px; }
+    .summary { background: #f5f5f5; padding: 16px; border-radius: 8px; margin: 16px 0; }
+    .task { border: 1px solid #e0e0e0; border-radius: 8px; padding: 16px; margin: 12px 0; }
+    .task-header { display: flex; justify-content: space-between; align-items: center; }
+    .task-name { font-weight: 600; font-size: 16px; }
+    .task-id { font-size: 12px; color: #999; font-family: monospace; margin-left: 6px; font-weight: 400; }
+    .status { padding: 4px 12px; border-radius: 12px; font-size: 13px; font-weight: 500; }
+    .status-ok { background: #e8f5e9; color: #2e7d32; }
+    .status-error { background: #ffebee; color: #c62828; }
+    .status-skip { background: #fff3e0; color: #e65100; }
+    .status-warn { background: #fff8e1; color: #f57f17; }
+    .result { color: #666; margin-top: 8px; font-size: 14px; }
+    .time { color: #999; font-size: 12px; margin-top: 4px; }
+    .files { margin-top: 8px; }
+    .file-ok { color: #2e7d32; margin: 4px 0; font-size: 14px; }
+    .file-miss { color: #c62828; margin: 4px 0; font-size: 14px; }
+    .file-warn { color: #f57f17; margin: 4px 0; font-size: 14px; }
+    .review-list { margin-top: 12px; padding: 12px; background: #fff8e1; border-radius: 6px; border-left: 4px solid #f9a825; }
+    .review-list h3 { margin: 0 0 8px 0; font-size: 14px; color: #f57f17; }
+    .review-item { margin: 6px 0; font-size: 14px; }
+    .review-item a { color: #1565c0; text-decoration: none; }
+    .note-blue { margin-top: 8px; padding: 8px 12px; background: #e3f2fd; border-radius: 6px; border-left: 4px solid #1565c0; font-size: 13px; color: #1565c0; }
+    .alert-red { margin-top: 8px; padding: 8px 12px; background: #ffebee; border-radius: 6px; border-left: 4px solid #c62828; font-size: 13px; color: #c62828; }
+    .alert-orange { margin-top: 8px; padding: 8px 12px; background: #fff3e0; border-radius: 6px; border-left: 4px solid #e65100; font-size: 13px; color: #e65100; }
+  </style>
+</head>
+<body>
+  <h1>☀️ Утренний отчёт — 19.04.2026</h1>
+
+  <div class="summary">
+    <strong>Задач запущено:</strong> 8 из 10 активных &nbsp;|&nbsp;
+    <strong>Успешно:</strong> 5 &nbsp;|&nbsp;
+    <strong>Предупреждения:</strong> 2 &nbsp;|&nbsp;
+    <strong>Ошибки:</strong> 1 &nbsp;|&nbsp;
+    <strong>Не запускались ещё:</strong> 2 (по расписанию позже)
+  </div>
+
+  <!-- 1. update-pokemon-releases — ВСЕГДА ПЕРВАЯ -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">📅 Календарь релизов Pokemon TCG <span class="task-id">update-pokemon-releases</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 19.04.2026 00:07</div>
+    <div class="result">Обновлены статусы 85 продуктов. Проверена Bulbapedia: найдено новое позиция Phantasmal Flames Portfolios, но биндеры без бустеров не добавляются — новых товаров по критериям нет. HTML-календарь сгенерирован (85 продуктов, 92 744 символа).</div>
+    <div class="note-blue">📅 <a href="releases/календарь_релизов.html" style="color:#1565c0;">Открыть интерактивный календарь релизов</a></div>
+  </div>
+
+  <!-- 2. moysklad-verify-products -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">🔍 Проверка товаров МойСклад <span class="task-id">moysklad-verify-products</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 19.04.2026 01:07</div>
+    <div class="result">Все 19 товаров проверены владельцем. Новых непроверенных товаров нет. Статус всех снапшотов: ✅ Проверено 29.03.2026. Сравнение с МойСклад не потребовалось.</div>
+  </div>
+
+  <!-- 3. moysklad-add-images-auto -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">📸 Авто-фото товаров <span class="task-id">moysklad-add-images-auto</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 19.04.2026 02:06</div>
+    <div class="result">Проверено 4 товара (Ascended Heroes — P-SET-ASC-04/05/06, P-BBU-ASC). У всех уже есть фото в МойСклад, загрузка не потребовалась. Группа B (вышедшие без фото) — пуста.</div>
+    <div class="alert-orange">⚠️ <strong>P-BND-PFL</strong> (Phantasmal Flames Booster Bundle) — <strong>156 дней без фото</strong>. Локальные файлы готовы в <code>moysklad/images/P-BND-PFL/</code>, но Chrome-расширение недоступно при автозапуске. Требуется ручная загрузка через МойСклад.</div>
+  </div>
+
+  <!-- 4. moysklad-release-sync -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">🔄 Синхронизация → МойСклад <span class="task-id">moysklad-release-sync</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 19.04.2026 03:05</div>
+    <div class="result">Новых товаров нет. Все ранее добавленные товары Ascended Heroes проверены. Следующий релиз для добавления: Chaos Rising (22.05.2026, 33 дня) — бустер, ETB, блистеры, бандл, тин.</div>
+  </div>
+
+  <!-- 5. moysklad-purchase-prices -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">💰 Закупочные цены <span class="task-id">moysklad-purchase-prices</span></span>
+      <span class="status status-warn">⚠️ Внимание</span>
+    </div>
+    <div class="time">Последний запуск: 19.04.2026 04:06</div>
+    <div class="result">Обработано 5 заказов, 9 товаров. Обновлено: 0, без изменений: 9, ошибки: 0.</div>
+    <div class="alert-red">🔴 <strong>Критично: P-BBU-ASC</strong> (Ascended Heroes Booster Bundle) — цена продажи <strong>0 руб</strong> при закупочной <strong>7 500 руб</strong>. Минимальная допустимая: <strong>11 625 руб</strong>. Требует ручного исправления!</div>
+  </div>
+
+  <!-- 6. moysklad-backup -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">🗄️ Бэкап МойСклад <span class="task-id">moysklad-backup</span></span>
+      <span class="status status-error">❌ Ошибка</span>
+    </div>
+    <div class="time">Последний запуск: 18.04.2026 07:08 (сегодня в 07:08 — ещё не запускалась)</div>
+    <div class="result">Chrome MCP недоступен при автоматическом запуске — бэкап не выполнен. Последний успешный бэкап: <strong>31.03.2026</strong>.</div>
+    <div class="alert-red">❌ Убедитесь, что браузер Chrome открыт с расширением Claude in Chrome. Задача запустится снова сегодня в 07:08.</div>
+  </div>
+
+  <!-- 7. backup-prompts-readme -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">💾 Бэкап промптов и README <span class="task-id">backup-prompts-readme</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 18.04.2026 20:07</div>
+    <div class="result">Создан бэкап <code>backups/2026-04-18_17-07/</code>. Сохранено 89 файлов (README, prompts, scripts, reports). Размер: 16 МБ.</div>
+    <div class="alert-orange">⚠️ 7 старых бэкапов (старше 7 дней) не удалены из-за ограничений macOS APFS в Linux-окружении. Не влияет на работу новых бэкапов. Всего бэкапов в папке: 29.</div>
+  </div>
+
+  <!-- 8. ebay-qwintry-sync -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">📦 eBay → Qwintry <span class="task-id">ebay-qwintry-sync</span></span>
+      <span class="status status-warn">⚠️ Частично</span>
+    </div>
+    <div class="time">Последний запуск: 18.04.2026 22:32</div>
+    <div class="result">Qwintry обновлён успешно. Обновлены заказы #33 и #37 (новые Qwintry ID, #37 поступил на склад). На складе 9 посылок, ожидается 3 в пути. Исходящая #676582-US — отправлена.</div>
+    <div class="alert-orange">⚠️ <strong>eBay не проверен</strong> — Chrome-расширение не подключено при авто-запуске. Новые заказы за 10–18 апреля не синхронизированы.<br>⚠️ <strong>Неизвестная посылка на складе</strong> — Qwintry ID 1655968, трек 3000156429-8, 0.04 lb, поступила ~17 апреля. Проверьте вручную на q3.qwintry.com.</div>
+  </div>
+
+  <h2>📁 Файлы</h2>
+  <div class="files">
+    <div class="file-miss">❌ Бэкап МойСклад: последний — товары_31.03.2026.xlsx (нет свежего, задача падает из-за Chrome)</div>
+    <div class="file-ok">✅ Календарь релизов: releases/календарь_релизов.xlsx (обновлён 18.04.2026 24:09)</div>
+    <div class="file-ok">✅ Покупки в Америке: ebay/покупки_в_америке.xlsx (обновлён 18.04.2026 22:43)</div>
+    <div class="file-ok">✅ Снапшот синхронизации: moysklad/snapshots/sync_19.04.2026.md</div>
+    <div class="file-ok">✅ Бэкап промптов: backups/2026-04-18_17-07/ (89 файлов, 16 МБ)</div>
+  </div>
+</body>
+</html>
+` },
   { iso: "2026-04-18", label: "18.04", fullLabel: "18.04.2026", html: `<!DOCTYPE html>
 <html lang="ru">
 <head>
