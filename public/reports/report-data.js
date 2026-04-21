@@ -1,4 +1,133 @@
 window.POKEBARN_REPORTS = [
+  { iso: "2026-04-21", label: "21.04", fullLabel: "21.04.2026", html: `<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Утренний отчёт Pokebarn — 21.04.2026</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #333; }
+    h1 { font-size: 24px; border-bottom: 2px solid #333; padding-bottom: 8px; }
+    h2 { font-size: 18px; margin-top: 28px; }
+    .summary { background: #f5f5f5; padding: 16px; border-radius: 8px; margin: 16px 0; }
+    .task { border: 1px solid #e0e0e0; border-radius: 8px; padding: 16px; margin: 12px 0; }
+    .task-header { display: flex; justify-content: space-between; align-items: center; }
+    .task-name { font-weight: 600; font-size: 16px; }
+    .task-id { font-size: 12px; color: #999; font-family: monospace; margin-left: 6px; font-weight: 400; }
+    .status { padding: 4px 12px; border-radius: 12px; font-size: 13px; font-weight: 500; }
+    .status-ok { background: #e8f5e9; color: #2e7d32; }
+    .status-warn { background: #fff8e1; color: #f57f17; }
+    .result { color: #666; margin-top: 8px; font-size: 14px; }
+    .time { color: #999; font-size: 12px; margin-top: 4px; }
+    .files { margin-top: 4px; }
+    .file-ok { color: #2e7d32; margin: 4px 0; font-size: 14px; }
+    .file-miss { color: #c62828; margin: 4px 0; font-size: 14px; }
+    .note-blue { margin-top: 10px; padding: 8px 12px; background: #e3f2fd; border-radius: 6px; border-left: 4px solid #1565c0; font-size: 13px; color: #1565c0; }
+    .note-warn { margin-top: 10px; padding: 8px 12px; background: #fff8e1; border-radius: 6px; border-left: 4px solid #f9a825; font-size: 13px; color: #e65100; }
+  </style>
+</head>
+<body>
+  <h1>☀️ Утренний отчёт — 21.04.2026</h1>
+
+  <div class="summary">
+    <strong>Задач запущено:</strong> 8 из 8 активных &nbsp;|&nbsp;
+    <strong>Успешно:</strong> 8 &nbsp;|&nbsp;
+    <strong>Ошибки:</strong> 0 &nbsp;|&nbsp;
+    <strong>Не запускались:</strong> 0
+  </div>
+
+  <!-- 1. update-pokemon-releases — ВСЕГДА ПЕРВАЯ -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">📅 Календарь релизов Pokemon TCG <span class="task-id">update-pokemon-releases</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 21.04.2026 00:07</div>
+    <div class="result">Обновлено 85 строк с датами. Bulbapedia проверена — новых товаров не обнаружено. Итого в таблице: 85 товаров, дата обновлена на 21.04.2026.</div>
+    <div class="note-blue">📅 <a href="releases/календарь_релизов.html" style="color:#1565c0;">Открыть интерактивный календарь релизов</a></div>
+  </div>
+
+  <!-- 2. moysklad-verify-products -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">🔍 Проверка товаров МойСклад <span class="task-id">moysklad-verify-products</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 21.04.2026 01:07</div>
+    <div class="result">Все 19 товаров проверены владельцем (✅ Проверено 29.03.2026). Товаров со статусом ⏳ или 🔍 не обнаружено. Ближайшие кандидаты (Chaos Rising, Mega Zygarde ex Premium Collection) перейдут в обработку ~22.04.2026.</div>
+  </div>
+
+  <!-- 3. moysklad-add-images-auto -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">📸 Авто-фото товаров <span class="task-id">moysklad-add-images-auto</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 21.04.2026 02:06</div>
+    <div class="result">Проверено 4 товара (pre-release, релиз 24.04). Загружено фото: 0 — все 4 уже имеют фото (ASC-04, ASC-05, ASC-06, Booster Bundle). Группа B (вышедшие без фото): 0 товаров.</div>
+    <div class="note-warn">⚠️ <strong>Требует внимания:</strong> P-BND-PFL (Phantasmal Flames Booster Bundle) — <strong>158 дней без фото</strong> в МойСклад. Локальные файлы готовы, но товар вне автоматического окна. Требуется ручная загрузка.</div>
+  </div>
+
+  <!-- 4. moysklad-release-sync -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">🔄 Синхронизация → МойСклад <span class="task-id">moysklad-release-sync</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 21.04.2026 03:05</div>
+    <div class="result">Все товары со статусом «🟨 Скоро &lt; 30 дн» уже имеют отметку ✅ или ⛔️ в МойСклад. Новых товаров для добавления нет. Снапшоты без ⏳ Не проверено.</div>
+  </div>
+
+  <!-- 5. moysklad-purchase-prices -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">💰 Закупочные цены <span class="task-id">moysklad-purchase-prices</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 21.04.2026 04:05</div>
+    <div class="result">Обработано заказов: 4, товаров: 7. Обновлено: 1 — P-04-104 (Surging Sparks ETB) → 11 762 руб. Без изменений: 6. Аудит наценок в норме (минимум 55.3% у P-ETB-POR).</div>
+  </div>
+
+  <!-- 6. moysklad-backup (07:00) -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">🗄️ Бэкап МойСклад <span class="task-id">moysklad-backup</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 20.04.2026 07:08</div>
+    <div class="result">Создан файл товары_20.04.2026.xlsx — 703 строки × 110 столбцов (694 товара + 8 модификаций), 454 КБ. Валидация пройдена.</div>
+  </div>
+
+  <!-- 7. backup-prompts-readme (08:00/14:00/20:00) -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">💾 Бэкап промптов <span class="task-id">backup-prompts-readme</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 20.04.2026 20:07</div>
+    <div class="result">Создан бэкап 2026-04-20_17-07: 5 README, credentials.md, dashboard.html, 34 промпта, 3 скрипта, 50 отчётов (~16 МБ). Всего бэкапов: 26. Примечание: 3 старых бэкапа от 13.04 не удалены — защищены правами iCloud (требует ручной очистки).</div>
+  </div>
+
+  <!-- 8. ebay-qwintry-sync (22:30) -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">📦 eBay → Qwintry <span class="task-id">ebay-qwintry-sync</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 20.04.2026 22:31</div>
+    <div class="result">Holo Energy Lot (№34) — статус изменён на Delivered (доставлен 20.04). Moltres/Zapdos/Articuno GX (№38, $430) — получен трек USPS 9505512003626110163565, ETA 27 апреля. В Qwintry создана посылка #1018941-US для Moltres ($43.00). Holo Energy обнаружен на складе как #1656631-US. Новых заказов нет.</div>
+  </div>
+
+  <h2>📁 Файлы</h2>
+  <div class="files">
+    <div class="file-ok">✅ Бэкап МойСклад: товары_20.04.2026.xlsx (20.04.2026 07:10)</div>
+    <div class="file-ok">✅ Календарь релизов: releases/календарь_релизов.xlsx (обновлён 20.04.2026 21:11)</div>
+    <div class="file-ok">✅ Покупки eBay: ebay/покупки_в_америке.xlsx (обновлён 20.04.2026 19:49)</div>
+    <div class="file-ok">✅ Снапшот: moysklad/snapshots/verify_21.04.2026.md</div>
+    <div class="file-ok">✅ Бэкап промптов: backups/2026-04-20_17-07</div>
+  </div>
+</body>
+</html>
+` },
   { iso: "2026-04-20", label: "20.04", fullLabel: "20.04.2026", html: `<!DOCTYPE html>
 <html lang="ru">
 <head>
