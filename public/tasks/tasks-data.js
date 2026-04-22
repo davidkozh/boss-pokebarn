@@ -1,7 +1,7 @@
 // РАСПИСАНИЕ ЗАДАЧ — источник данных для дашборда boss.pokebarn.ru
 // ⚠️  НЕ РЕДАКТИРОВАТЬ ВРУЧНУЮ. Перегенерируется задачей daily-report (06:00).
 // ✏️  Для изменения отображения → tasks/tasks-metadata.json
-// Сгенерировано: 2026-04-21
+// Сгенерировано: 2026-04-22
 
 window.POKEBARN_TASKS = [
   { id: 'update-pokemon-releases',     name: 'Обновление релизов',        icon: '📅', hour: 0,    enabled: true,  agent: 'продакт', desc: 'Обновление календаря релизов Pokemon TCG с Bulbapedia' },

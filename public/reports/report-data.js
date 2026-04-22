@@ -1,4 +1,143 @@
 window.POKEBARN_REPORTS = [
+  { iso: "2026-04-22", label: "22.04", fullLabel: "22.04.2026", html: `<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Утренний отчёт Pokebarn — 22.04.2026</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #333; }
+    h1 { font-size: 24px; border-bottom: 2px solid #333; padding-bottom: 8px; }
+    h2 { font-size: 18px; margin-top: 32px; }
+    .summary { background: #f5f5f5; padding: 16px; border-radius: 8px; margin: 16px 0; }
+    .task { border: 1px solid #e0e0e0; border-radius: 8px; padding: 16px; margin: 12px 0; }
+    .task-header { display: flex; justify-content: space-between; align-items: center; }
+    .task-name { font-weight: 600; font-size: 16px; }
+    .task-id { font-size: 12px; color: #999; font-family: monospace; margin-left: 6px; font-weight: 400; }
+    .status { padding: 4px 12px; border-radius: 12px; font-size: 13px; font-weight: 500; }
+    .status-ok { background: #e8f5e9; color: #2e7d32; }
+    .status-error { background: #ffebee; color: #c62828; }
+    .status-skip { background: #fff3e0; color: #e65100; }
+    .status-warn { background: #fff8e1; color: #f57f17; }
+    .result { color: #666; margin-top: 8px; font-size: 14px; }
+    .time { color: #999; font-size: 12px; margin-top: 4px; }
+    .files { margin-top: 8px; }
+    .file-ok { color: #2e7d32; margin: 4px 0; font-size: 14px; }
+    .file-miss { color: #c62828; margin: 4px 0; font-size: 14px; }
+    .review-list { margin-top: 12px; padding: 12px; background: #fff8e1; border-radius: 6px; border-left: 4px solid #f9a825; }
+    .review-list h3 { margin: 0 0 8px 0; font-size: 14px; color: #f57f17; }
+    .review-item { margin: 6px 0; font-size: 14px; }
+    .review-item a { color: #1565c0; text-decoration: none; }
+    .note-blue { margin-top: 8px; padding: 8px 12px; background: #e3f2fd; border-radius: 6px; border-left: 4px solid #1565c0; font-size: 13px; color: #1565c0; }
+    .note-warn { margin-top: 8px; padding: 8px 12px; background: #fff8e1; border-radius: 6px; border-left: 4px solid #f9a825; font-size: 13px; color: #e65100; }
+  </style>
+</head>
+<body>
+  <h1>☀️ Утренний отчёт — 22.04.2026</h1>
+
+  <div class="summary">
+    <strong>Задач запущено:</strong> 8 из 8 активных &nbsp;|&nbsp;
+    <strong>Успешно:</strong> 5 &nbsp;|&nbsp;
+    <strong>Предупреждения:</strong> 2 &nbsp;|&nbsp;
+    <strong>Ошибки:</strong> 1 &nbsp;|&nbsp;
+    <strong>Не запускались:</strong> 0
+  </div>
+
+  <!-- 1. update-pokemon-releases — ВСЕГДА ПЕРВАЯ -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">📅 Календарь релизов Pokemon TCG <span class="task-id">update-pokemon-releases</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 22.04.2026 00:07</div>
+    <div class="result">Обновлено 85 строк. Изменения статусов: R41 Mega Lucario ex League Battle Deck и R71 Mega Zygarde ex Premium Collection перешли в «Скоро &lt; 30 дн», а также 12 позиций Chaos Rising (R73–R84, релиз 22.05.2026) перешли в «Скоро &lt; 30 дн». Новых товаров с Bulbapedia не найдено. HTML-файл пересоздан (85 товаров, 95 134 символа).</div>
+    <div class="note-blue">📅 <a href="releases/календарь_релизов.html" style="color:#1565c0;">Открыть интерактивный календарь релизов</a></div>
+  </div>
+
+  <!-- 2. moysklad-verify-products -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">🔍 Проверка товаров <span class="task-id">moysklad-verify-products</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 22.04.2026 01:07</div>
+    <div class="result">Все 19 товаров проверены владельцем — статус ✅ Проверено 29.03.2026. Новых товаров со статусом ⏳ или 🔍 не обнаружено. Отчёт сохранён: moysklad/snapshots/verify_22.04.2026.md.</div>
+  </div>
+
+  <!-- 3. moysklad-add-images-auto -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">📸 Авто-фото товаров <span class="task-id">moysklad-add-images-auto</span></span>
+      <span class="status status-error">❌ Ошибка</span>
+    </div>
+    <div class="time">Последний запуск: 22.04.2026 02:06</div>
+    <div class="result">Задача прервалась с ошибкой лимита Chrome API: «You've hit your limit · resets 6am (Europe/Moscow)». Загрузка фото не завершена. Лимит сброшен в 06:00 — задача продолжит работу при следующем запуске.</div>
+  </div>
+
+  <!-- 4. moysklad-release-sync -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">🔄 Синхронизация → МойСклад <span class="task-id">moysklad-release-sync</span></span>
+      <span class="status status-warn">⚠️ Частично</span>
+    </div>
+    <div class="time">Последний запуск: 22.04.2026 03:05</div>
+    <div class="result">Сессия завершилась без финального отчёта в процессе создания товаров Chaos Rising. Успешно создан минимум P-BLS-CRI-01 и P-BLS-CRI-02, задача прервалась на P-BLS-CRI-03 и далее (P-TIN-CRI). Снапшот sync_22.04.2026.md не создан. Рекомендуется проверить состояние МойСклад.</div>
+    <div class="note-warn">⚠️ Часть товаров Chaos Rising может быть не создана. Проверьте МойСклад вручную.</div>
+  </div>
+
+  <!-- 5. moysklad-purchase-prices -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">💰 Закупочные цены <span class="task-id">moysklad-purchase-prices</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 22.04.2026 04:05</div>
+    <div class="result">Период 15.04–22.04.2026: 5 заказов, 29 товаров. Обновлено: 1 (P-05-941: 0 → 21 500 руб). Без изменений: 28. Ошибок: 0.</div>
+  </div>
+
+  <!-- 6. moysklad-backup -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">🗄️ Бэкап МойСклад <span class="task-id">moysklad-backup</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 21.04.2026 07:08</div>
+    <div class="result">Бэкап товары_21.04.2026.xlsx создан: 703 строки × 110 столбцов (694 товара + 8 модификаций), 454 КБ. Сегодняшний бэкап запустится в 07:00.</div>
+  </div>
+
+  <!-- 7. backup-prompts-readme -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">💾 Бэкап промптов <span class="task-id">backup-prompts-readme</span></span>
+      <span class="status status-warn">⚠️ С предупреждением</span>
+    </div>
+    <div class="time">Последний запуск: 21.04.2026 20:07</div>
+    <div class="result">Сохранено 95 файлов (16 МБ): 7 README/credentials/dashboard, 34 промпта, 3 скрипта, 51 отчёт. Старые бэкапы 2026-04-13 и 2026-04-14 не удалились из-за ошибки прав (Operation not permitted на README_разработчик.md). Итого 29 бэкапов.</div>
+    <div class="note-warn">⚠️ Папки 2026-04-13_* и 2026-04-14_* можно удалить вручную через Finder.</div>
+  </div>
+
+  <!-- 8. ebay-qwintry-sync -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">📦 eBay → Qwintry <span class="task-id">ebay-qwintry-sync</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 21.04.2026 22:32</div>
+    <div class="result">Новых заказов eBay нет (последний #38 Moltres 18.04). Обновлены статусы: Mewtwo Promo 052 SIR и Moltres &amp; Zapdos &amp; Articuno GX SM210 — Ожидаемая → На складе Qwintry. Посылка #676582-US отправлена в Россию, #672708-US доставлена. На складе: 12 посылок.</div>
+  </div>
+
+  <h2>📁 Файлы</h2>
+  <div class="files">
+    <div class="file-ok">✅ Бэкап МойСклад: товары_21.04.2026.xlsx (464 КБ, 21.04.2026 07:26)</div>
+    <div class="file-ok">✅ Календарь релизов: releases/календарь_релизов.xlsx (21.04.2026 00:13)</div>
+    <div class="file-ok">✅ eBay покупки: ebay/покупки_в_америке.xlsx (21.04.2026 22:50)</div>
+    <div class="file-ok">✅ Снапшот verify: moysklad/snapshots/verify_22.04.2026.md</div>
+    <div class="file-miss">⚠️ Снапшот sync: sync_22.04.2026.md не создан (release-sync прервалась)</div>
+    <div class="file-ok">✅ Последний бэкап промптов: backups/2026-04-21_17-07 (95 файлов, 16 МБ)</div>
+  </div>
+
+</body>
+</html>
+` },
   { iso: "2026-04-21", label: "21.04", fullLabel: "21.04.2026", html: `<!DOCTYPE html>
 <html lang="ru">
 <head>
