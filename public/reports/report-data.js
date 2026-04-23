@@ -1,4 +1,159 @@
 window.POKEBARN_REPORTS = [
+  { iso: "2026-04-23", label: "23.04", fullLabel: "23.04.2026", html: `<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Утренний отчёт Pokebarn — 23.04.2026</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #333; }
+    h1 { font-size: 24px; border-bottom: 2px solid #333; padding-bottom: 8px; }
+    h2 { font-size: 18px; margin-top: 28px; }
+    .summary { background: #f5f5f5; padding: 16px; border-radius: 8px; margin: 16px 0; }
+    .task { border: 1px solid #e0e0e0; border-radius: 8px; padding: 16px; margin: 12px 0; }
+    .task-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+    .task-name { font-weight: 600; font-size: 16px; }
+    .task-id { font-size: 12px; color: #999; font-family: monospace; margin-left: 6px; font-weight: 400; }
+    .status { padding: 4px 12px; border-radius: 12px; font-size: 13px; font-weight: 500; white-space: nowrap; }
+    .status-ok { background: #e8f5e9; color: #2e7d32; }
+    .status-error { background: #ffebee; color: #c62828; }
+    .status-skip { background: #fff3e0; color: #e65100; }
+    .status-warn { background: #fff8e1; color: #f57f17; }
+    .status-run { background: #e3f2fd; color: #1565c0; }
+    .result { color: #666; margin-top: 8px; font-size: 14px; }
+    .time { color: #999; font-size: 12px; margin-top: 4px; }
+    .files { margin-top: 4px; }
+    .file-ok { color: #2e7d32; margin: 4px 0; font-size: 14px; }
+    .file-miss { color: #c62828; margin: 4px 0; font-size: 14px; }
+    .file-warn { color: #f57f17; margin: 4px 0; font-size: 14px; }
+    .review-list { margin-top: 12px; padding: 12px; background: #fff8e1; border-radius: 6px; border-left: 4px solid #f9a825; }
+    .review-list h3 { margin: 0 0 8px 0; font-size: 14px; color: #f57f17; }
+    .review-item { margin: 5px 0; font-size: 14px; }
+    .review-item a { color: #1565c0; text-decoration: none; }
+    .note-blue { margin-top: 10px; padding: 8px 12px; background: #e3f2fd; border-radius: 6px; border-left: 4px solid #1565c0; font-size: 13px; color: #1565c0; }
+    .note-warn { margin-top: 10px; padding: 8px 12px; background: #fff8e1; border-radius: 6px; border-left: 4px solid #f9a825; font-size: 13px; color: #e65100; }
+  </style>
+</head>
+<body>
+  <h1>☀️ Утренний отчёт — 23.04.2026</h1>
+  <div class="summary">
+    <strong>Задач запущено:</strong> 9 из 9 активных &nbsp;|&nbsp;
+    <strong>Успешно:</strong> 7 &nbsp;|&nbsp;
+    <strong>Ошибки:</strong> 0 &nbsp;|&nbsp;
+    <strong>В работе:</strong> 1 &nbsp;|&nbsp;
+    <strong>Предупреждения:</strong> 1
+  </div>
+
+  <!-- 1. update-pokemon-releases — ВСЕГДА ПЕРВАЯ -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">📅 Календарь релизов Pokemon TCG <span class="task-id">update-pokemon-releases</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 23.04.2026 00:07</div>
+    <div class="result">Добавлено 12 новых товаров: Mega Evolution Blisters × 6 (вышли 26.09.2025) и Phantasmal Flames Blisters × 6 (вышли 14.11.2025). Счётчик обновлён: 85 → 97 товаров. HTML-файл перегенерирован (111 486 символов, дата 23.04.2026).</div>
+    <div class="note-blue">📅 <a href="releases/календарь_релизов.html" style="color:#1565c0;">Открыть интерактивный календарь релизов</a></div>
+  </div>
+
+  <!-- 2. moysklad-verify-products -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">🔍 Проверка товаров <span class="task-id">moysklad-verify-products</span></span>
+      <span class="status status-warn">⚠️ Внимание</span>
+    </div>
+    <div class="time">Последний запуск: 23.04.2026 01:07</div>
+    <div class="result">Все 19 товаров в стандартных снапшотах имеют статус ✅ Проверено 29.03.2026. Однако 12 новых товаров (CRI + POR), созданных 22.04, записаны в нестандартном формате — без поля «Статус проверки». Задача не может верифицировать их автоматически.</div>
+    <div class="review-list">
+      <h3>⏳ 12 товаров ожидают проверки владельцем (добавлены 22.04.2026)</h3>
+      <div class="review-item">1. <a href="https://online.moysklad.ru/app/#good/edit?id=007f55ca-17ed-11f1-0a80-04eb0000408e" target="_blank">P-ETB-POR — Perfect Order Elite Trainer Box</a></div>
+      <div class="review-item">2. <a href="https://online.moysklad.ru/app/#good/edit?id=2f07efda-3de1-11f1-0a80-131d0001f7ff" target="_blank">P-COL-POR — Mega Zygarde ex Premium Collection</a></div>
+      <div class="review-item">3. <a href="https://online.moysklad.ru/app/#good/edit?id=8751f071-3de2-11f1-0a80-0d4f0001f132" target="_blank">P-BOO-CRI — Бустер Pokemon Chaos Rising</a></div>
+      <div class="review-item">4. <a href="https://online.moysklad.ru/app/#good/edit?id=441d520a-3de3-11f1-0a80-094400021d54" target="_blank">P-BND-CRI — Chaos Rising Build &amp; Battle Box</a></div>
+      <div class="review-item">5. <a href="https://online.moysklad.ru/app/#good/edit?id=958ee52c-3de3-11f1-0a80-16140001ee86" target="_blank">P-ETB-CRI — Chaos Rising Elite Trainer Box</a></div>
+      <div class="review-item">6. <a href="https://online.moysklad.ru/app/#good/edit?id=0d12ef42-3de4-11f1-0a80-001c0001ede5" target="_blank">P-BLS-CRI-01 — Chaos Rising Checklane (Pikachu &amp; Raichu)</a></div>
+      <div class="review-item">7. <a href="https://online.moysklad.ru/app/#good/edit?id=8233c94e-3de4-11f1-0a80-094400021f28" target="_blank">P-BLS-CRI-02 — Chaos Rising Checklane (Mewtwo &amp; Mew)</a></div>
+      <div class="review-item">8. <a href="https://online.moysklad.ru/app/#good/edit?id=308d7b7e-3e61-11f1-0a80-0f8c00142e03" target="_blank">P-BLS-CRI-03 — Chaos Rising Checklane (Charizard &amp; Rayquaza)</a></div>
+      <div class="review-item">9. <a href="https://online.moysklad.ru/app/#good/edit?id=9b98f140-3e61-11f1-0a80-161400142962" target="_blank">P-BLS-CRI-04 — Chaos Rising Checklane (Lucario &amp; Garchomp)</a></div>
+      <div class="review-item">10. <a href="https://online.moysklad.ru/app/#good/edit?id=6adf5bbb-3e62-11f1-0a80-07ae001437b9" target="_blank">P-BLS-CRI-05 — Chaos Rising Checklane (Moltres &amp; Reshiram)</a></div>
+      <div class="review-item">11. <a href="https://online.moysklad.ru/app/#good/edit?id=d525ec74-3e62-11f1-0a80-07ae00144301" target="_blank">P-BLS-CRI-06 — Chaos Rising Checklane (Mimikyu &amp; Zacian)</a></div>
+      <div class="review-item">12. <a href="https://online.moysklad.ru/app/#good/edit?id=388ba5b9-3e63-11f1-0a80-1c910014beb9" target="_blank">P-TIN-CRI — Chaos Rising Mini Tin</a></div>
+    </div>
+  </div>
+
+  <!-- 3. moysklad-add-images-auto -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">📸 Авто-фото товаров <span class="task-id">moysklad-add-images-auto</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 23.04.2026 02:06</div>
+    <div class="result">Загружены фото для 11 товаров (CRI × 10 + POR × 1). Форматы: PNG→JPEG (P-BOO-CRI ×4, P-COL-POR ×2), WebP→JPEG (P-BLS-CRI-05, P-BLS-CRI-06). Колонка «Фото» в таблице релизов обновлена: все 11 строк → ✅. Отчёт: moysklad/images/отчёт_фото_23.04.2026.html.</div>
+  </div>
+
+  <!-- 4. moysklad-release-sync -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">🔄 Синхронизация → МойСклад <span class="task-id">moysklad-release-sync</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 23.04.2026 03:04</div>
+    <div class="result">Новых товаров для добавления нет. Все строки со статусом «🟨 Скоро &lt; 30 дн» уже обработаны: большинство помечены ✅ (ранее добавлены) или ⛔️ (исключены — Бустер Боксы, ETB Pokemon Center, Prerelease Kit).</div>
+  </div>
+
+  <!-- 5. moysklad-purchase-prices -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">💰 Закупочные цены <span class="task-id">moysklad-purchase-prices</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 23.04.2026 04:05</div>
+    <div class="result">Обработано 5 заказов за период 16.04–23.04.2026, проверено 28 товаров. Обновлений цен: 0 (все актуальны). Аудит критичных нарушений (цена=0, заглушка 99 999) — нарушений не обнаружено. 🟢</div>
+  </div>
+
+  <!-- 6. moysklad-backup -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">🗄️ Бэкап МойСклад <span class="task-id">moysklad-backup</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 22.04.2026 07:08 (следующий сегодня в 07:07)</div>
+    <div class="result">Файл товары_22.04.2026.xlsx: 710 строк × 110 столбцов (701 товар + 8 модификаций), 456 КБ. Файл валиден.</div>
+  </div>
+
+  <!-- 7. backup-prompts-readme -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">💾 Бэкап промптов <span class="task-id">backup-prompts-readme</span></span>
+      <span class="status status-run">🔄 В работе</span>
+    </div>
+    <div class="time">Запущена: 23.04.2026 08:06 — сейчас выполняется</div>
+    <div class="result">Задача запущена по расписанию (08:00). Предыдущий бэкап: 22.04.2026 17:07 (backups/2026-04-22_17-07). Результат текущего запуска будет доступен после завершения.</div>
+  </div>
+
+  <!-- 8. ebay-qwintry-sync -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">📦 eBay → Qwintry <span class="task-id">ebay-qwintry-sync</span></span>
+      <span class="status status-warn">⚠️ Предупреждение</span>
+    </div>
+    <div class="time">Последний запуск: 22.04.2026 22:31</div>
+    <div class="result">eBay проверен (25 заказов) — новых нет, статусы совпадают с таблицей. Order 38 (Moltres): статус «Tracking available», ETA 23 апреля. Qwintry API недоступен (q3-api.qwintry.com не отвечал) — данные о посылках не загружены. Изменений в таблице нет.</div>
+    <div class="note-warn">ℹ️ Moltres должен доставиться в Qwintry сегодня (23.04). Рекомендуется вручную обновить статусы: H→Delivered, M→На складе.</div>
+  </div>
+
+  <h2>📁 Файлы</h2>
+  <div class="files">
+    <div class="file-ok">✅ Бэкап МойСклад: moysklad/backup/товары_22.04.2026.xlsx (710 строк, 456 КБ)</div>
+    <div class="file-ok">✅ Календарь релизов: releases/календарь_релизов.xlsx (обновлён 23.04.2026 00:39)</div>
+    <div class="file-ok">✅ Календарь HTML: releases/календарь_релизов.html (обновлён 22.04.2026 21:16)</div>
+    <div class="file-ok">✅ eBay покупки: ebay/покупки_в_америке.xlsx (обновлён 21.04.2026)</div>
+    <div class="file-ok">✅ Снапшот синхронизации: moysklad/snapshots/sync_23.04.2026.md</div>
+    <div class="file-ok">✅ Отчёт verify: moysklad/snapshots/verify_23.04.2026.md</div>
+    <div class="file-ok">✅ Последний бэкап промптов: backups/2026-04-22_17-07</div>
+    <div class="file-ok">✅ Закупочные цены: moysklad/отчёт_закупочные_цены_23.04.2026.md</div>
+  </div>
+
+</body>
+</html>` },
   { iso: "2026-04-22", label: "22.04", fullLabel: "22.04.2026", html: `<!DOCTYPE html>
 <html lang="ru">
 <head>
