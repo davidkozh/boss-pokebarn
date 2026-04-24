@@ -1,4 +1,174 @@
 window.POKEBARN_REPORTS = [
+  { iso: "2026-04-24", label: "24.04", fullLabel: "24.04.2026", html: `<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Утренний отчёт Pokebarn — 24.04.2026</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #333; }
+    h1 { font-size: 24px; border-bottom: 2px solid #333; padding-bottom: 8px; }
+    h2 { font-size: 18px; margin-top: 28px; }
+    .summary { background: #f5f5f5; padding: 16px; border-radius: 8px; margin: 16px 0; }
+    .task { border: 1px solid #e0e0e0; border-radius: 8px; padding: 16px; margin: 12px 0; }
+    .task-header { display: flex; justify-content: space-between; align-items: center; }
+    .task-name { font-weight: 600; font-size: 16px; }
+    .task-id { font-size: 12px; color: #999; font-family: monospace; margin-left: 6px; font-weight: 400; }
+    .status { padding: 4px 12px; border-radius: 12px; font-size: 13px; font-weight: 500; }
+    .status-ok { background: #e8f5e9; color: #2e7d32; }
+    .status-warn { background: #fff8e1; color: #f57f17; }
+    .status-running { background: #e3f2fd; color: #1565c0; }
+    .result { color: #666; margin-top: 8px; font-size: 14px; }
+    .time { color: #999; font-size: 12px; margin-top: 4px; }
+    .files { margin-top: 4px; }
+    .file-ok { color: #2e7d32; margin: 4px 0; font-size: 14px; }
+    .file-miss { color: #c62828; margin: 4px 0; font-size: 14px; }
+    .file-warn { color: #e65100; margin: 4px 0; font-size: 14px; }
+    .review-list { margin-top: 12px; padding: 12px; background: #fff8e1; border-radius: 6px; border-left: 4px solid #f9a825; }
+    .review-list h3 { margin: 0 0 8px 0; font-size: 14px; color: #f57f17; }
+    .review-item { margin: 5px 0; font-size: 14px; }
+    .review-item a { color: #1565c0; text-decoration: none; }
+    .review-item a:hover { text-decoration: underline; }
+    .note-blue { margin-top: 10px; padding: 8px 12px; background: #e3f2fd; border-radius: 6px; border-left: 4px solid #1565c0; font-size: 13px; color: #1565c0; }
+    .critical-list { margin-top: 10px; padding: 10px 12px; background: #ffebee; border-radius: 6px; border-left: 4px solid #c62828; font-size: 13px; color: #c62828; }
+  </style>
+</head>
+<body>
+  <h1>☀️ Утренний отчёт — 24.04.2026</h1>
+
+  <div class="summary">
+    <strong>Задач запущено:</strong> 7 из 8 активных &nbsp;|&nbsp;
+    <strong>Успешно:</strong> 7 &nbsp;|&nbsp;
+    <strong>Ошибки:</strong> 0 &nbsp;|&nbsp;
+    <strong>В процессе:</strong> 1
+  </div>
+
+  <!-- 1. update-pokemon-releases — ВСЕГДА ПЕРВАЯ -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">Календарь релизов Pokemon TCG <span class="task-id">update-pokemon-releases</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 24.04.2026 00:07</div>
+    <div class="result">
+      Статусы обновлены: 97 строк. Сегодня день релиза R66–R69 (Ascended Heroes): Mega ex Box Meganium, Emboar, Feraligatr + Booster Bundle — переведены в статус 🟥 Вышел. Новых товаров с Bulbapedia не найдено. Итого: 🟥 77 вышедших, 🟨 15 скоро, 🟩 5 в будущем.
+    </div>
+    <div class="note-blue">📅 <a href="releases/календарь_релизов.html" style="color:#1565c0;">Открыть интерактивный календарь релизов</a></div>
+  </div>
+
+  <!-- 2. moysklad-verify-products -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">Проверка товаров МойСклад <span class="task-id">moysklad-verify-products</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 24.04.2026 01:07</div>
+    <div class="result">
+      Проверено 12 товаров из sync_22.04.2026.md. Все 12 были изменены владельцем 23.04.2026 — снапшоты созданы с актуальными данными из МойСклад. Статус всех товаров: 🔍 Правки найдены.
+    </div>
+    <div class="review-list">
+      <h3>🔍 Товары, ожидающие подтверждения владельцем (12 шт.):</h3>
+      <div class="review-item"><a href="https://online.moysklad.ru/app/#good/edit?id=007f55ca-17ed-11f1-0a80-04eb0000408e" target="_blank">P-ETB-POR</a> — набор карточек Pokemon Elite Trainer Box Perfect Order (Mega Evolution)</div>
+      <div class="review-item"><a href="https://online.moysklad.ru/app/#good/edit?id=2f07efda-3de1-11f1-0a80-131d0001f7ff" target="_blank">P-COL-POR</a> — Набор карточек Pokemon Mega Zygarde ex Premium Collection</div>
+      <div class="review-item"><a href="https://online.moysklad.ru/app/#good/edit?id=8751f071-3de2-11f1-0a80-0d4f0001f132" target="_blank">P-BOO-CRI</a> — Бустер Pokemon Chaos Rising (Mega Evolution)</div>
+      <div class="review-item"><a href="https://online.moysklad.ru/app/#good/edit?id=441d520a-3de3-11f1-0a80-094400021d54" target="_blank">P-BND-CRI</a> — Набор карточек Pokemon Chaos Rising Booster Bundle (6 бустеров)</div>
+      <div class="review-item"><a href="https://online.moysklad.ru/app/#good/edit?id=958ee52c-3de3-11f1-0a80-16140001ee86" target="_blank">P-ETB-CRI</a> — Набор карточек Pokemon Chaos Rising ETB</div>
+      <div class="review-item"><a href="https://online.moysklad.ru/app/#good/edit?id=0d12ef42-3de4-11f1-0a80-001c0001ede5" target="_blank">P-BLS-CRI-01</a> — Блистер карточек Pokemon Chaos Rising с 3мя бустерами (Charmeleon)</div>
+      <div class="review-item"><a href="https://online.moysklad.ru/app/#good/edit?id=8233c94e-3de4-11f1-0a80-094400021f28" target="_blank">P-BLS-CRI-02</a> — Блистер карточек Pokemon Chaos Rising с одним бустером (Toxel)</div>
+      <div class="review-item"><a href="https://online.moysklad.ru/app/#good/edit?id=308d7b7e-3e61-11f1-0a80-0f8c00142e03" target="_blank">P-BLS-CRI-03</a> — Блистер карточек Pokemon Chaos Rising Premium Checklane (Pawmot)</div>
+      <div class="review-item"><a href="https://online.moysklad.ru/app/#good/edit?id=9b98f140-3e61-11f1-0a80-161400142962" target="_blank">P-BLS-CRI-04</a> — Блистер карточек Pokemon Chaos Rising Stage 1 (Flygon)</div>
+      <div class="review-item"><a href="https://online.moysklad.ru/app/#good/edit?id=6adf5bbb-3e62-11f1-0a80-07ae001437b9" target="_blank">P-BLS-CRI-05</a> — Блистер карточек Pokemon Chaos Rising Checklane (Moltres &amp; Reshiram)</div>
+      <div class="review-item"><a href="https://online.moysklad.ru/app/#good/edit?id=d525ec74-3e62-11f1-0a80-07ae00144301" target="_blank">P-BLS-CRI-06</a> — Блистер карточек Pokemon Chaos Rising Checklane (Mimikyu &amp; Zacian)</div>
+      <div class="review-item"><a href="https://online.moysklad.ru/app/#good/edit?id=388ba5b9-3e63-11f1-0a80-1c910014beb9" target="_blank">P-TIN-CRI</a> — Набор карточек Pokemon Chaos Rising Mini Tin</div>
+    </div>
+  </div>
+
+  <!-- 3. moysklad-add-images-auto -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">Авто-фото товаров <span class="task-id">moysklad-add-images-auto</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 24.04.2026 02:06</div>
+    <div class="result">
+      Загружено фото для 1 товара: P-DEC-ME-02 (Mega Lucario ex League Battle Deck) — 3 фото (front/back/contents). 4 товара без фото старше 30 дней требуют ручной загрузки: Phantasmal Flames Booster Bundle (161 дн.), Trainer's Toolkit 2025 (182 дн.), Mega Evolution Knock Out Collection (161 дн.), Raikou Two Pack Blister (113 дн.).
+    </div>
+    <div class="critical-list">
+      ⚠️ Критично: 4 товара без фото более 30 дней — артикулы не привязаны в календаре, требуется уточнение у владельца.
+    </div>
+  </div>
+
+  <!-- 4. moysklad-release-sync -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">Синхронизация → МойСклад <span class="task-id">moysklad-release-sync</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 24.04.2026 03:04</div>
+    <div class="result">
+      Новых товаров нет. Все строки со статусом 🟨 Скоро &lt; 30 дн уже обработаны (✅ или ⛔️ в колонке «В МойСклад»). Товаров со статусом ⏳ не найдено.
+    </div>
+  </div>
+
+  <!-- 5. moysklad-purchase-prices -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">Закупочные цены <span class="task-id">moysklad-purchase-prices</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 24.04.2026 04:05</div>
+    <div class="result">
+      Период 17.04–24.04: 5 заказов, 19 товаров. Обновлено: 0 — все 19 товаров уже имели корректные закупочные цены. Скрипт отработал без ошибок.
+    </div>
+  </div>
+
+  <!-- 9. moysklad-backup -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">Бэкап МойСклад <span class="task-id">moysklad-backup</span></span>
+      <span class="status status-warn">⏳ Вчера</span>
+    </div>
+    <div class="time">Последний запуск: 23.04.2026 07:08 (сегодняшний запуск будет в 07:00)</div>
+    <div class="result">
+      Выполнен вчера: товары_23.04.2026.xlsx — 715 строк × 110 столбцов (706 товаров + 8 модификаций), 459 КБ. Сегодняшний бэкап ещё не запущен (расписание 07:00).
+    </div>
+  </div>
+
+  <!-- 10. backup-prompts-readme -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">Бэкап промптов <span class="task-id">backup-prompts-readme</span></span>
+      <span class="status status-running">🔄 Выполняется</span>
+    </div>
+    <div class="time">Запущена: 24.04.2026 ~06:00 (в процессе)</div>
+    <div class="result">
+      Задача сейчас выполняется. Предыдущий успешный бэкап: 22.04.2026 20:06. Папка backups/ содержит бэкапы до 2026-04-22_17-07.
+    </div>
+  </div>
+
+  <!-- 11. ebay-qwintry-sync -->
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">eBay → Qwintry <span class="task-id">ebay-qwintry-sync</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 23.04.2026 22:31</div>
+    <div class="result">
+      Новых заказов нет. 3 изменения: заказ #38 (Moltres &amp; Zapdos &amp; Articuno GX) доставлен, получил новый Qwintry ID 1658015-US. Заказ #32 (Mewtwo SV Promo) — посылка UPS ещё не получена складом, статус «Ожидаемая». На складе: 11 посылок, 2 отправлено в РФ.
+    </div>
+  </div>
+
+  <h2>📁 Файлы</h2>
+  <div class="files">
+    <div class="file-warn">⏳ Бэкап МойСклад сегодня: товары_24.04.2026.xlsx — ещё не создан (задача в 07:00)</div>
+    <div class="file-ok">✅ Бэкап МойСклад вчера: товары_23.04.2026.xlsx (715 строк, 459 КБ)</div>
+    <div class="file-ok">✅ releases/календарь_релизов.xlsx — обновлён 23.04.2026</div>
+    <div class="file-ok">✅ ebay/покупки_в_америке.xlsx — обновлён 23.04.2026</div>
+    <div class="file-ok">✅ moysklad/snapshots/sync_24.04.2026.md — создан сегодня</div>
+    <div class="file-warn">⏳ backups/ — последний бэкап промптов: 22.04.2026 17:07 (новый выполняется)</div>
+  </div>
+</body>
+</html>
+` },
   { iso: "2026-04-23", label: "23.04", fullLabel: "23.04.2026", html: `<!DOCTYPE html>
 <html lang="ru">
 <head>
