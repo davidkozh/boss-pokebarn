@@ -1,4 +1,211 @@
 window.POKEBARN_REPORTS = [
+  { iso: "2026-05-17", label: "17.05", fullLabel: "17.05.2026", html: `<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Утренний отчёт Pokebarn — 17.05.2026</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #333; }
+    h1 { font-size: 24px; border-bottom: 2px solid #333; padding-bottom: 8px; }
+    h2 { font-size: 18px; margin-top: 32px; }
+    .summary { background: #f5f5f5; padding: 16px; border-radius: 8px; margin: 16px 0; }
+    .task { border: 1px solid #e0e0e0; border-radius: 8px; padding: 16px; margin: 12px 0; }
+    .task-header { display: flex; justify-content: space-between; align-items: center; }
+    .task-name { font-weight: 600; font-size: 16px; }
+    .task-id { font-size: 12px; color: #999; font-family: monospace; margin-left: 6px; font-weight: 400; }
+    .status { padding: 4px 12px; border-radius: 12px; font-size: 13px; font-weight: 500; }
+    .status-ok { background: #e8f5e9; color: #2e7d32; }
+    .status-error { background: #ffebee; color: #c62828; }
+    .status-skip { background: #fff3e0; color: #e65100; }
+    .status-warn { background: #fff8e1; color: #f57f17; }
+    .status-run { background: #e3f2fd; color: #1565c0; }
+    .result { color: #666; margin-top: 8px; font-size: 14px; }
+    .time { color: #999; font-size: 12px; margin-top: 4px; }
+    .files { margin-top: 8px; }
+    .file-ok { color: #2e7d32; margin: 4px 0; font-size: 14px; }
+    .file-miss { color: #c62828; margin: 4px 0; font-size: 14px; }
+    .file-warn { color: #e65100; margin: 4px 0; font-size: 14px; }
+    .review-list { margin-top: 12px; padding: 12px; background: #fff8e1; border-radius: 6px; border-left: 4px solid #f9a825; }
+    .review-list h3 { margin: 0 0 8px 0; font-size: 14px; color: #f57f17; }
+    .review-item { margin: 6px 0; font-size: 14px; }
+    .review-item a { color: #1565c0; text-decoration: none; }
+    .review-item a:hover { text-decoration: underline; }
+    .review-item .date { color: #999; font-size: 12px; }
+    .review-badge { display: inline-block; font-size: 11px; padding: 2px 6px; border-radius: 4px; margin-left: 6px; }
+    .badge-pending { background: #fff3e0; color: #e65100; }
+    .badge-edited { background: #e3f2fd; color: #1565c0; }
+    .alert-red { margin-top: 8px; padding: 8px 12px; background: #ffebee; border-radius: 6px; border-left: 4px solid #c62828; font-size: 13px; color: #c62828; }
+    .alert-orange { margin-top: 8px; padding: 8px 12px; background: #fff3e0; border-radius: 6px; border-left: 4px solid #ff6f00; font-size: 13px; color: #e65100; }
+    .note-blue { margin-top: 8px; padding: 8px 12px; background: #e3f2fd; border-radius: 6px; border-left: 4px solid #1565c0; font-size: 13px; color: #1565c0; }
+    .report-nav { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; margin-bottom: 16px; border-bottom: 1px solid #e0e0e0; font-size: 13px; }
+    .report-nav a { color: #1565c0; text-decoration: none; padding: 6px 12px; border: 1px solid #e0e0e0; border-radius: 6px; transition: background 0.15s; }
+    .report-nav a:hover { background: #f5f5f5; }
+    .report-nav .nav-center { color: #666; font-weight: 500; }
+    .report-nav .nav-panel { background: #e8f5e9; border-color: #a5d6a7; color: #2e7d32; font-weight: 500; }
+    .report-nav .nav-disabled { color: #ccc; border-color: #eee; pointer-events: none; }
+  </style>
+</head>
+<body>
+
+  <div class="report-nav">
+    <a href="daily_16.05.2026.html">← 16.05.2026</a>
+    <span class="nav-center">☀️ 17.05.2026</span>
+    <div style="display:flex;gap:8px">
+      <a class="nav-disabled">след. →</a>
+      <a href="../панель_задач.html" class="nav-panel">📅 Панель задач</a>
+    </div>
+  </div>
+
+  <h1>☀️ Утренний отчёт — 17.05.2026</h1>
+  <div class="summary">
+    <strong>Задач запущено:</strong> 8 из 8 активных &nbsp;|&nbsp;
+    <strong>Успешно:</strong> 4 &nbsp;|&nbsp;
+    <strong>Идут:</strong> 3 &nbsp;|&nbsp;
+    <strong>Ошибки:</strong> 1 &nbsp;|&nbsp;
+    <strong>Не запускались:</strong> 0
+  </div>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">📅 Обновление релизов <span class="task-id">update-pokemon-releases</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 17.05.2026 00:07 МСК</div>
+    <div class="result">Пересчитаны статусы и «Дней до релиза» для 97 существующих строк. Добавлено 10 новых товаров сета <strong>Pitch Black</strong> (релиз 17.07.2026 + Build &amp; Battle Box 04.07.2026): бустер-пак, бустер-бокс, бустер-бандл, 2 ETB (Zarude + PC), 4 блистера, B&amp;B Box. Обогащены 3 строки (Mega Moonlight Tin × 2 и Lumiose City Mini Tin, релиз 05.06.2026). HTML-зеркало регенерировано. Распределение: 78 🟥 / 17 🟨 / 12 🟩.</div>
+    <div class="alert-orange">⚠️ Код сета <code>PBL</code> для Pitch Black поставлен предварительно — в колонке J у всех 10 строк отмечено «Set Icon PBL — подтвердить у владельца» (Bulbapedia заблокирована для прямого доступа).</div>
+    <div class="note-blue">ℹ️ Рассмотреть переименование R98 «Mega Clefairy» → «Mega Clefable» (так на pokemon.com/pokebeach).</div>
+    <div class="note-blue">📅 <a href="../releases/календарь_релизов.html">Открыть интерактивный календарь релизов</a></div>
+  </div>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">🔍 Проверка товаров <span class="task-id">moysklad-verify-products</span></span>
+      <span class="status status-run">🔄 Идёт</span>
+    </div>
+    <div class="time">Последний запуск: 17.05.2026 01:07 МСК</div>
+    <div class="result">Сессия ещё активна на момент генерации отчёта (41 ход ассистента). Последнее действие — попытка доступа к МойСклад через Chrome MCP. Полный результат сравнения снапшотов появится в следующем отчёте.</div>
+    <div class="alert-orange">⚠️ В четырёх предыдущих запусках подряд (27–29.04 и 16.05) задача либо завершалась техническим сбоем (GWT-интерфейс МойСклад зависает), либо оставалась в статусе «running». Если так повторится сегодня — 6 товаров серии PFL и 3 новых TIN-кандидата останутся непроверенными.</div>
+  </div>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">📸 Авто-фото товаров <span class="task-id">moysklad-add-images-auto</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 17.05.2026 02:06 МСК</div>
+    <div class="result">Окно ≤7 дней захватило 12 товаров с релизом 22.05.2026 (Chaos Rising + Mega Lucario ex League Battle Deck + Mega Zygarde ex Premium Collection). У всех 12 уже есть front-фото в <code>moysklad/images/{артикул}/</code> и колонка L «Фото» = ✅ — новых скачиваний и загрузок в МойСклад не было.</div>
+    <div class="alert-orange">⚠️ Качество фото ниже нормы 700×900: P-BLS-CRI-03 (front+back 800×800), P-BLS-CRI-04 (front 800×800), все 5 артов P-TIN-CRI (800×800), P-DEC-ME-02 (back, contents 800×800), P-COL-POR (contents 1000×744). Hi-res не нашлись — Chaos Rising ещё не выпущен, retailer-страницы рендерятся через JS.</div>
+    <div class="alert-red">🗄️ Мусор/дубликаты webp по-прежнему не удалены: P-BLS-CRI-03/test1.webp, test2.webp; P-BLS-CRI-05 и -06 — <code>_front.webp</code> рядом с уже сконвертированным <code>_front.jpg</code> (Operation not permitted из sandbox). Нужна ручная очистка.</div>
+    <div class="note-blue">📄 <a href="../moysklad/images/отчёт_фото_17.05.2026.html">Открыть отчёт по фото за 17.05.2026</a></div>
+  </div>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">🔄 Синхронизация → МойСклад <span class="task-id">moysklad-release-sync</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 17.05.2026 03:05 МСК</div>
+    <div class="result">Прочитан календарь релизов (108 строк данных). В окно «🟨 Скоро &lt; 30 дн» вошли 3 новых релиза 05.06.2026 (Mega Moonlight Tin × 2 + Lumiose City Mini Tin Collection) — подготовлены поля для создания карточек, артикулы <code>P-TIN-MML-01</code>, <code>P-TIN-MML-02</code>, <code>P-TIN-LCT</code>. Снапшот: <a href="../moysklad/snapshots/sync_17.05.2026.md">sync_17.05.2026.md</a>.</div>
+    <div class="alert-red">🚫 Запись в МойСклад НЕ выполнена — API заблокирован прокси (curl exit 56, DNS → 127.0.0.1). Все 3 кандидата отложены до запуска через VPS-терминал или ручного создания владельцем. Это та же проблема, что и в предыдущих синхронизациях.</div>
+    <div class="alert-orange">⚠️ Возможна ошибка в наименовании промо-карты «Mega Clefairy» в P-TIN-MML-01: на pokemon.com промо называется «Mega Clefable». Решение — за владельцем.</div>
+    <div class="review-list">
+      <h3>📋 Товары на проверку владельцем (6 шт.) — все в очереди с 26.04</h3>
+      <div class="review-item">
+        ⏳ <a href="https://online.moysklad.ru/app/#good/edit?id=1d74adb0-4108-11f1-0a80-00a7001eb98c" target="_blank">P-BLS-PFL-01 — Блистер Pokemon Phantasmal Flames с 1 бустером (Cottonee)</a>
+        <span class="review-badge badge-pending">не проверено</span>
+        <span class="date">добавлен 26.04 (21 день)</span>
+      </div>
+      <div class="review-item">
+        ⏳ <a href="https://online.moysklad.ru/app/#good/edit?id=6406039d-4108-11f1-0a80-0d5a001e258d" target="_blank">P-BLS-PFL-02 — Блистер Pokemon Phantasmal Flames с 1 бустером (Whimsicott)</a>
+        <span class="review-badge badge-pending">не проверено</span>
+        <span class="date">добавлен 26.04 (21 день)</span>
+      </div>
+      <div class="review-item">
+        ⏳ <a href="https://online.moysklad.ru/app/#good/edit?id=f5697ff5-4108-11f1-0a80-0d5a001e25f9" target="_blank">P-BLS-PFL-03 — Блистер Pokemon Phantasmal Flames с 3 бустерами (Sneasel)</a>
+        <span class="review-badge badge-pending">не проверено</span>
+        <span class="date">добавлен 26.04 (21 день)</span>
+      </div>
+      <div class="review-item">
+        ⏳ <a href="https://online.moysklad.ru/app/#good/edit?id=381f4223-4109-11f1-0a80-1324001dabdd" target="_blank">P-BLS-PFL-04 — Блистер Pokemon Phantasmal Flames с 3 бустерами (Weavile)</a>
+        <span class="review-badge badge-pending">не проверено</span>
+        <span class="date">добавлен 26.04 (21 день)</span>
+      </div>
+      <div class="review-item">
+        ⏳ <a href="https://online.moysklad.ru/app/#good/edit?id=6c1663c3-4109-11f1-0a80-161c001e8f0f" target="_blank">P-BLS-PFL-05 — Блистер Pokemon Phantasmal Flames с картами эволюции (Blaziken)</a>
+        <span class="review-badge badge-pending">не проверено</span>
+        <span class="date">добавлен 26.04 (21 день)</span>
+      </div>
+      <div class="review-item">
+        ⏳ <a href="https://online.moysklad.ru/app/#good/edit?id=a3b133fb-4109-11f1-0a80-0d5a001e265f" target="_blank">P-BLS-PFL-06 — Блистер Pokemon Phantasmal Flames с картами эволюции (Hydrapple)</a>
+        <span class="review-badge badge-pending">не проверено</span>
+        <span class="date">добавлен 26.04 (21 день)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">💰 Закупочные цены <span class="task-id">moysklad-purchase-prices</span></span>
+      <span class="status status-run">🔄 Идёт</span>
+    </div>
+    <div class="time">Последний запуск: 17.05.2026 04:05 МСК</div>
+    <div class="result">Сессия ещё активна (Chrome navigate, 19 ходов). Полный отчёт по обновлению закупочных цен из заказов поставщикам появится в следующем отчёте.</div>
+    <div class="note-blue">ℹ️ Задача запускается 3 раза в день (04:00 / 12:00 / 20:00). Здесь отражён первый — утренний — запуск.</div>
+  </div>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">🗄️ Бэкап МойСклад <span class="task-id">moysklad-backup</span></span>
+      <span class="status status-error">❌ Ошибка</span>
+    </div>
+    <div class="time">Последний запуск: 16.05.2026 07:08 МСК (сессия всё ещё running)</div>
+    <div class="result">Задача запущена по расписанию, но не довела работу до конца: файла <code>moysklad/backup/товары_16.05.2026.xlsx</code> в папке нет. Последний успешный бэкап — <code>товары_28.04.2026.xlsx</code> (459 КБ, 19 дней назад).</div>
+    <div class="alert-red">❌ Разрыв в ежедневных бэкапах МойСклад с 29.04.2026 (19 дней). Сессия 16.05 числится «running» более 22 часов — вероятно, зависание на этапе экспорта через UI МойСклад. Следующий запуск 17.05 в 07:08 МСК. Если повторится, нужно проверить логику задачи и стабильность UI.</div>
+  </div>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">💾 Бэкап промптов <span class="task-id">backup-prompts-readme</span></span>
+      <span class="status status-ok">✅ Успешно</span>
+    </div>
+    <div class="time">Последний запуск: 16.05.2026 20:07 МСК (3/3 за сутки)</div>
+    <div class="result">За последние 24 часа созданы все три плановых бэкапа: <code>backups/2026-05-16_08-07/</code>, <code>backups/2026-05-16_14-07/</code>, <code>backups/2026-05-16_20-07/</code> — README-файлы и весь каталог <code>prompts/</code>.</div>
+    <div class="note-blue">ℹ️ С 28.04 по 14.05 ежедневных бэкапов не было (host неактивен). С 15.05 ритм восстановлен.</div>
+  </div>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-name">📦 eBay → Qwintry <span class="task-id">ebay-qwintry-sync</span></span>
+      <span class="status status-run">🔄 Идёт</span>
+    </div>
+    <div class="time">Последний запуск: 16.05.2026 22:32 МСК</div>
+    <div class="result">Сессия активна более 7 часов (Chrome navigate, 29 ходов). Синхронизация покупок eBay → Qwintry не завершена. Последнее обновление <code>ebay/покупки_в_америке.xlsx</code> — 27.04.2026 19:42.</div>
+    <div class="alert-orange">⚠️ Файлы синхронизации в <code>ebay/</code> отсутствуют с 28.04 по 16.05 (та же 19-дневная пауза, что и у moysklad-backup). После завершения сессии стоит проверить, успешно ли обновлены трек-номера.</div>
+  </div>
+
+  <h2>📁 Файлы</h2>
+  <div class="files">
+    <div class="file-ok">✅ Снапшот синхронизации: <code>moysklad/snapshots/sync_17.05.2026.md</code> (13,6 КБ)</div>
+    <div class="file-ok">✅ Отчёт по фото: <code>moysklad/images/отчёт_фото_17.05.2026.html</code></div>
+    <div class="file-ok">✅ Календарь релизов (xlsx): <code>releases/календарь_релизов.xlsx</code> (обновлён 16.05 21:13, 32 КБ)</div>
+    <div class="file-ok">✅ Календарь релизов (html): <code>releases/календарь_релизов.html</code> (140 КБ, регенерирован сегодня)</div>
+    <div class="file-ok">✅ Бэкап календаря релизов: <code>backups/календарь_релизов_20260516_211211.xlsx</code></div>
+    <div class="file-ok">✅ Бэкапы промптов (3 шт): <code>backups/2026-05-16_08-07/</code>, <code>2026-05-16_14-07/</code>, <code>2026-05-16_20-07/</code></div>
+    <div class="file-ok">✅ Отчёт update-pokemon-releases: <code>reports/update-pokemon-releases_2026-05-17.md</code></div>
+    <div class="file-miss">❌ Бэкап МойСклад за 16.05: <code>moysklad/backup/товары_16.05.2026.xlsx</code> — отсутствует</div>
+    <div class="file-miss">❌ Свежий отчёт eBay → Qwintry: <code>ebay/sync_report_2026-05-16.md</code> — отсутствует</div>
+  </div>
+
+  <h2>ℹ️ Заметки автогенерации</h2>
+  <div class="files">
+    <div class="file-ok">Отчёт собран в 06:01 МСК — три задачи (01:00 verify, 04:00 prices, 22:30 ebay) ещё в процессе на момент генерации. Их итоги будут видны в отчёте за 18.05.</div>
+    <div class="file-ok">Отключённые задачи (6 шт.: ozon-competitor-analysis, ozon-promo-audit, ozon-auto-promo-audit, wb-promo-audit, wb-auto-promo-audit, openclaw-daily-audit) исключены из отчёта согласно правилу. См. <code>reports/status.json</code> для полного среза по всем 14 задачам.</div>
+    <div class="file-ok">Файл <code>tasks/tasks-data.js</code> перегенерирован из <code>tasks-metadata.json</code> + MCP <code>list_scheduled_tasks</code> — 20 записей, все enabled-флаги синхронизированы.</div>
+  </div>
+
+</body>
+</html>
+` },
   { iso: "2026-05-16", label: "16.05", fullLabel: "16.05.2026", html: `<!DOCTYPE html>
 <html lang="ru">
 <head>
